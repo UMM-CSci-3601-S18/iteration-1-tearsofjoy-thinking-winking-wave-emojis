@@ -49,6 +49,18 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
+        /*Emoji API plans
+            Data that will be sent when an emoji is selected
+                Owner ID
+                Emoji picked
+                rating 1-5
+                Date/Time
+                Description of reasons for picking emoji
+
+            path: "/emojiRecords"
+            path: "/addEmojiRecord"
+
+        */
 
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
