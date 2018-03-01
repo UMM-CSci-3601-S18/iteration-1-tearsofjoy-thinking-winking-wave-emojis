@@ -25,17 +25,11 @@ public class EmojiController {
     private MongoDatabase database;
     private final MongoCollection<Document> emojiCollection;
 
-    /**
-     * Construct a controller for users.
-     *
-     * @param database the database containing user data
-     */
     public EmojiController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
-        emojiCollection = database.getCollection("users");
+        emojiCollection = database.getCollection("emojiRecords");
     }
-
 
     /** Helper method which iterates through the collection, receiving all
      * documents if no query parameter is specified. If the age query parameter
@@ -45,6 +39,9 @@ public class EmojiController {
      * @param queryParams
      * @return an array of Users in a JSON formatted string
      */
+
+
+    // Will use this for reports
     public String getEmojiRecords(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
