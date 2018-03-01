@@ -54,18 +54,6 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-        /*Emoji API plans
-            Data that will be sent when an emoji is selected
-                Owner ID
-                Emoji picked
-                rating 1-5
-                Date/Time
-                Description of reasons for picking emoji
-
-            path: "/emojiRecords"
-            path: "/emojiRecords/new"
-        */
-
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
 
@@ -82,6 +70,27 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         get("api/users/:id", userRequestHandler::getUserJSON);
         post("api/users/new", userRequestHandler::addNewUser);
+
+        /// Emoji Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+
+        /*Emoji API plans
+            Data that will be sent when an emoji is selected
+                Owner ID
+                Emoji picked
+                rating 1-5
+                Date/Time
+                Description of reasons for picking emoji
+
+            path: "/emojiRecords"
+            path: "/emojiRecords/new"
+        */
+
+        //List emojis, filtered using query parameters
+
+        get("api/emojiRecords", emojiRequestHandler::getEmojiRecords);
+        post("api/emojis/new", emojiRequestHandler::addNewEmojiRecord);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
