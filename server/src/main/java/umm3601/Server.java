@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
+import umm3601.emoji.EmojiController;
+import umm3601.emoji.EmojiRequestHandler;
 
 import java.io.IOException;
 
@@ -20,10 +22,13 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase theDatabase = mongoClient.getDatabase(userDatabaseName);
 
-        UserController userController = new UserController(userDatabase);
+        UserController userController = new UserController(theDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+        EmojiController emojiController = new EmojiController(theDatabase);
+        EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
 
         //Configure Spark
         port(serverPort);
@@ -58,8 +63,7 @@ public class Server {
                 Description of reasons for picking emoji
 
             path: "/emojiRecords"
-            path: "/addEmojiRecord"
-
+            path: "/emojiRecords/new"
         */
 
         // Simple example route
