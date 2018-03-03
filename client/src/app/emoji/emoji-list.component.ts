@@ -36,30 +36,7 @@ export class EmojiListComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
-
-
-    public filterEmojis(searchName: string, searchAge: number): Emoji[] {
-
-        this.filteredEmojis = this.emojis;
-
-        // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
-
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchName || emoji.name.toLowerCase().indexOf(searchName) !== -1;
-            });
-        }
-
-        // Filter by age
-        if (searchAge != null) {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchAge || emoji.age == searchAge;
-            });
-        }
-
-        return this.filteredEmojis;
-    }
+    
 
     /**
      * Starts an asynchronous operation to update the emojis list
