@@ -14,7 +14,6 @@ import java.util.Map;
 
 import static com.mongodb.client.model.Filters.eq;
 
-<<<<<<< HEAD
 /**
  * Controller that manages requests for info about emojis.
 =======
@@ -70,12 +69,13 @@ public class EmojiController {
         return JSON.serialize(matchingEmojiRecords);
     }
 
-    public String addNewEmojiRecord(String ownerID, int emojiID, int emojiRating, String description) {
+    public String addNewEmojiRecord(String ownerID, int emojiID, int emojiRating, String date, String description) {
 
         Document newEmoji = new Document();
         newEmoji.append("ownerID", ownerID);
         newEmoji.append("emojiID", emojiID);
         newEmoji.append("emojiRating", emojiRating);
+        newEmoji.append("date", date);
         newEmoji.append("description", description);
 
         try {
