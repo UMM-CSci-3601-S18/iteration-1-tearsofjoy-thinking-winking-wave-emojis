@@ -7,6 +7,9 @@ import spark.Response;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 
+import umm3601.emoji.EmojiController;
+import umm3601.emoji.EmojiRequestHandler;
+
 import java.io.IOException;
 
 
@@ -22,8 +25,13 @@ public class Server {
         MongoClient mongoClient = new MongoClient();
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
 
+        MongoDatabase emojiDatabase = mongoClient.getDatabase(userDatabaseName);
+
         UserController userController = new UserController(userDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
+
+        EmojiController emojiController = new EmojiController(emojiDatabase);
+        EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
 
         //Configure Spark
         port(serverPort);
@@ -66,6 +74,8 @@ public class Server {
         get("api/users", userRequestHandler::getUsers);
         get("api/users/:id", userRequestHandler::getUserJSON);
         post("api/users/new", userRequestHandler::addNewUser);
+
+        get("api/emoji", emojiRequestHandler::getEmojis);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
