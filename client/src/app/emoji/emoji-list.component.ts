@@ -36,32 +36,6 @@ export class EmojiListComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
-    
-
-    /**
-     * Starts an asynchronous operation to update the emojis list
-     *
-     */
-    refreshEmojis(): Observable<Emoji[]> {
-        // Get Emojis returns an Observable, basically a "promise" that
-        // we will get the data from the server.
-        //
-        // Subscribe waits until the data is fully downloaded, then
-        // performs an action on it (the first lambda)
-
-        const emojiListObservable: Observable<Emoji[]> = this.emojiListService.getEmojis();
-        emojiListObservable.subscribe(
-            emojis => {
-                this.emojis = emojis;
-                this.filterEmojis(this.emojiName, this.emojiAge);
-            },
-            err => {
-                console.log(err);
-            });
-        return emojiListObservable;
-    }
-
-
     loadService(): void {
         this.emojiListService.getEmojis(this.emojiCompany).subscribe(
             emojis => {
@@ -76,7 +50,6 @@ export class EmojiListComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.refreshEmojis();
         this.loadService();
     }
 }
