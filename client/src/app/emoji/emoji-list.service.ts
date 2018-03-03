@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
 
-import {Emoji} from './emoji';
+import {EmojiRecord} from './emojiRecord';
 import {environment} from '../../environments/environment';
 
 
@@ -15,13 +15,13 @@ export class EmojiListService {
     constructor(private http: HttpClient) {
     }
 
-    getEmojis(emojiCompany?: string): Observable<Emoji[]> {
+    getEmojis(emojiCompany?: string): Observable<EmojiRecord[]> {
         this.filterByCompany(emojiCompany);
-        return this.http.get<Emoji[]>(this.emojiUrl);
+        return this.http.get<EmojiRecord[]>(this.emojiUrl);
     }
 
-    getEmojiById(id: string): Observable<Emoji> {
-        return this.http.get<Emoji>(this.emojiUrl + '/' + id);
+    getEmojiById(id: string): Observable<EmojiRecord> {
+        return this.http.get<EmojiRecord>(this.emojiUrl + '/' + id);
     }
 
     /*
@@ -76,7 +76,7 @@ export class EmojiListService {
         this.emojiUrl = this.emojiUrl.substring(0, start) + this.emojiUrl.substring(end);
     }
 
-    addNewEmoji(newEmoji: Emoji): Observable<{'$oid': string}> {
+    addNewEmojiRecord(newEmoji: EmojiRecord): Observable<{'$oid': string}> {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

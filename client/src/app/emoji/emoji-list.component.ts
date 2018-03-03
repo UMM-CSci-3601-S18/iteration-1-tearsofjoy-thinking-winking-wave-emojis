@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmojiListService} from './emoji-list.service';
-import {Emoji} from './emoji';
+import {EmojiRecord} from './emojiRecord';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 
@@ -15,14 +15,16 @@ import {MatDialog} from '@angular/material';
 
 export class EmojiListComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-    public emojis: Emoji[];
-    public filteredEmojis: Emoji[];
+    public emojis: EmojiRecord[];
+    public filteredEmojis: EmojiRecord[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public emojiName: string;
-    public emojiAge: number;
+    public emojiSelected: number;
+    public emojiRating: number;
     public emojiCompany: string;
+
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -32,8 +34,28 @@ export class EmojiListComponent implements OnInit {
 
     }
 
-    isHighlighted(emoji: Emoji): boolean {
+    isHighlighted(emoji: EmojiRecord): boolean {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
+    }
+
+    sendEmojiRecord(): void {
+
+        const newEmojiRecord: EmojiRecord = {_id: '',
+            ownerID: '',
+            emoji: this.emojiSelected,
+            rating: this.emojiRating,
+            date: Date.prototype.toDateString(),
+            description: ''};
+
+        this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
+            addUserResult => {
+                this.highlightedID = addUserResult;
+            },
+            err => {
+                // This should probably be turned into some sort of meaningful response.
+                console.log('There was an error adding the user.');
+                console.log('The error was ' + JSON.stringify(err));
+            });
     }
 
     loadService(): void {
