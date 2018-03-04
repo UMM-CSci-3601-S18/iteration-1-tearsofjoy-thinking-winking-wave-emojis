@@ -90,7 +90,7 @@ public class Server {
         //List emojis, filtered using query parameters
 
         get("api/emojiRecords", emojiRequestHandler::getEmojiRecords);
-        post("api/emojis/new", emojiRequestHandler::addNewEmojiRecord);
+        post("api/emojiRecords/new", emojiRequestHandler::addNewEmojiRecord);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
