@@ -36,6 +36,7 @@ const MATERIAL_MODULES: any[] = [
     MatTooltipModule,
     MatDialogModule,
     MatCheckboxModule,
+
 ];
 
 const COVALENT_MODULES: any[] = [
