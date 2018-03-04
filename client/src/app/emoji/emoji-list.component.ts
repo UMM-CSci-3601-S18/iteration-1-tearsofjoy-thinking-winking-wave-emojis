@@ -39,7 +39,9 @@ export class EmojiListComponent implements OnInit {
 
     sendEmojiRecord(): void {
 
+        console.log("Entered function to send emoji");
         if(this.emojiSelected > 0 && this.emojiSelected < 6 && this.emojiRating > 0 && this.emojiRating < 6){
+            console.log("Entered if statement to send emoji");
             const newEmojiRecord: EmojiRecord = {_id: '',
                 ownerID: 'tempID',
                 emoji: this.emojiSelected,
@@ -47,9 +49,11 @@ export class EmojiListComponent implements OnInit {
                 date: Date.prototype.toDateString(),
                 description: ''};
 
+            console.log("created emoji object to be sent");
             this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
-                addUserResult => {
-                    this.highlightedID = addUserResult;
+                addEmojiResult => {
+                    this.highlightedID = addEmojiResult;
+                    console.log("successfully sent emoji");
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.
