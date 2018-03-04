@@ -1,6 +1,6 @@
 export interface Emoji {
-    _id: string;
-    name: string;
+    _id: boolean;
+    name: boolean;
     age: number;
     company: string;
     email: string;
