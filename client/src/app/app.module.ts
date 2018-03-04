@@ -21,7 +21,8 @@ import {APP_BASE_HREF} from '@angular/common';
 import {CustomModule} from './custom.module';
 import {AddUserComponent} from './users/add-user.component';
 
-
+import {CrisisHelpComponent} from './crisis/crisisHelp.component';
+import {ResponseComponent} from './response/response.component';
 
 @NgModule({
     imports: [
@@ -36,7 +37,9 @@ import {AddUserComponent} from './users/add-user.component';
         UserListComponent,
         AddUserComponent,
 
-        EmojiListComponent
+        EmojiListComponent,
+        CrisisHelpComponent,
+        ResponseComponent
     ],
     providers: [
         UserListService, EmojiListService,
