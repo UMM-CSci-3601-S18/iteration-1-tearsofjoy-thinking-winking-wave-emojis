@@ -1,5 +1,6 @@
-#title{
+h1{
     text-align: center;
+    padding-top:3%;
 }
 
 h2{
@@ -8,4 +9,10 @@ h2{
 
 h3{
     text-align: center;
+}
+
+body{
+    background-color: #FEFE7A;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border-radius: 25px;
 }
