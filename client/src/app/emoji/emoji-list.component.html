@@ -9,26 +9,72 @@
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <h2 class="example-h2">Checkbox configuration</h2>
-                <section class="Emojiselect">
+                <h2 class="example-h2">How's your feeling today?</h2>
+                <section class="EmojiSelected">
 
-                    <mat-checkbox class="selecter" [(ngModel)]="emojiCompany">😪</mat-checkbox>
-                    <mat-checkbox class="selecter" [(ngModel)]="emojiAge"></mat-checkbox>
-                    <mat-checkbox class="selecter" [(ngModel)]="emojiName">Third</mat-checkbox>
-                    <mat-checkbox class="selecter" [(ngModel)]="emojiAge">Fourth Emoji</mat-checkbox>
+                    <mat-checkbox class="selecter" (click)="emojiSelected=1">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-blush" id="happy"></i>
+                        (Happy)
+                    </mat-checkbox>
+
+                    <mat-checkbox class="selecter" (click)="emojiSelected=2">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-confused"></i>
+                        (Disappoint)
+                    </mat-checkbox>
+
+                    <mat-checkbox class="selecter" (click)="emojiSelected=3">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-disappointed"></i>
+                        (Sick)
+                    </mat-checkbox>
+
+                    <mat-checkbox class="selecter" (click)="emojiSelected=4">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-angry"></i>
+                        (Angry)
+                    </mat-checkbox>
+
+                    <mat-checkbox class="selecter" (click)="emojiSelected=5">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-cry"></i>
+                        (Sad)
+                    </mat-checkbox>
 
 
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-disappointed"></i>
+
 
 
 
             </section>
 
+            </mat-card-content>
+
+            <mat-card-content>
+                <h2 class="example-h2">How you will rate your feeling?</h2>
+                <select class="EmojiRating" ng-model="data.singleSelect">
+                    <option (input)="emojiRating=1">1</option>
+                    <option (input)="emojiRating=2">2</option>
+                    <option (input)="emojiRating=3">3</option>
+                    <option (input)="emojiRating=4">4</option>
+                    <option (input)="emojiRating=5">5</option>
+                </select>
 
             </mat-card-content>
 
-            <button>submit now</button>
+
+
+            <label>textbox:
+                <input type="text" name="input" ng-model="example.text">
+            </label>
+
+
+
+
+
+            <button (click)="sendEmojiRecord()">submit now</button>
+
         </mat-card>
     </div>
 </div>
