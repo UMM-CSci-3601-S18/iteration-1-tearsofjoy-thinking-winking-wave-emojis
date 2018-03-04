@@ -20,10 +20,9 @@ export class EmojiListComponent implements OnInit {
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
-    public emojiName: string;
-    public emojiSelected: number;
-    public emojiRating: number;
-    public emojiCompany: string;
+
+    public emojiSelected: number = -1;
+    public emojiRating: number = -1;
 
 
     // The ID of the
@@ -40,26 +39,29 @@ export class EmojiListComponent implements OnInit {
 
     sendEmojiRecord(): void {
 
-        const newEmojiRecord: EmojiRecord = {_id: '',
-            ownerID: '',
-            emoji: this.emojiSelected,
-            rating: this.emojiRating,
-            date: Date.prototype.toDateString(),
-            description: ''};
+        if(this.emojiSelected > 0 && this.emojiSelected < 6 && this.emojiRating > 0 && this.emojiRating < 6){
+            const newEmojiRecord: EmojiRecord = {_id: '',
+                ownerID: 'tempID',
+                emoji: this.emojiSelected,
+                rating: this.emojiRating,
+                date: Date.prototype.toDateString(),
+                description: ''};
 
-        this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
-            addUserResult => {
-                this.highlightedID = addUserResult;
-            },
-            err => {
-                // This should probably be turned into some sort of meaningful response.
-                console.log('There was an error adding the user.');
-                console.log('The error was ' + JSON.stringify(err));
-            });
+            this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
+                addUserResult => {
+                    this.highlightedID = addUserResult;
+                },
+                err => {
+                    // This should probably be turned into some sort of meaningful response.
+                    console.log('There was an error adding the user.');
+                    console.log('The error was ' + JSON.stringify(err));
+                });
+        }
+
     }
 
     loadService(): void {
-        this.emojiListService.getEmojis(this.emojiCompany).subscribe(
+        this.emojiListService.getEmojis().subscribe(
             emojis => {
                 this.emojis = emojis;
                 this.filteredEmojis = this.emojis;
