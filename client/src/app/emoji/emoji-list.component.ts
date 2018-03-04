@@ -23,11 +23,6 @@ export class EmojiListComponent implements OnInit {
 
     public emojiSelected: number = -1;
     public emojiRating: number = -1;
-    public description: string = '';
-    thumbLabel = true;
-
-
-
 
 
     // The ID of the
@@ -61,28 +56,6 @@ export class EmojiListComponent implements OnInit {
                     console.log('There was an error adding the user.');
                     console.log('The error was ' + JSON.stringify(err));
                 });
-        }
-
-    }
-
-    //This is test function that rediarect to other page. It works
-    //window.open: open other window
-    //window.location.replace: replace window
-    testNavigate(){
-        if(this.emojiSelected == 1){
-            window.location.replace("http://localhost:9000/response#happyMessage");
-        }
-        if(this.emojiSelected == 2){
-            window.location.replace("http://localhost:9000/response#disappointMessage");
-        }
-        if(this.emojiSelected == 3){
-            window.location.replace("http://localhost:9000/response#sickMessage");
-        }
-        if(this.emojiSelected == 4){
-            window.location.replace("http://localhost:9000/response#angryMessage");
-        }
-        if(this.emojiSelected == 5){
-            window.location.replace("http://localhost:9000/response#sadMessage");
         }
 
     }

@@ -8,129 +8,72 @@
             <mat-card-title>Select Emoji</mat-card-title>
             <mat-divider></mat-divider>
 
-
-
-                <mat-radio-group class="emojiselect" [(ngModel)]="emojiSelected">
-                    <mat-radio-button class="emojibutton" value= 1>
-                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-blush"></i>
-                    </mat-radio-button>
-                    <mat-radio-button class="emojibutton" value= 2>
-                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-confused"></i>
-                    </mat-radio-button>
-                    <mat-radio-button class="emojibutton" value= 3>
-                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-disappointed"></i>
-                    </mat-radio-button>
-                    <mat-radio-button class="emojibutton" value= 4>
-                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-angry"></i>
-                    </mat-radio-button>
-                    <mat-radio-button class="emojibutton" value= 5>
-                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-cry"></i>
-                    </mat-radio-button>
-                </mat-radio-group>
-
-
-
-
-
             <mat-card-content>
                 <h2 class="example-h2">How's your feeling today?</h2>
-                <form class="EmojiSelect">
-
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-blush" id="happy"></i>
-                    (Happy)
+                <section class="EmojiSelected">
 
                     <mat-checkbox class="selecter" (click)="emojiSelected=1">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-blush" id="happy"></i>
+                        (Happy)
                     </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-confused"></i>
-                    (Disappoint)
-
 
                     <mat-checkbox class="selecter" (click)="emojiSelected=2">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-confused"></i>
+                        (Disappoint)
                     </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-disappointed"></i>
-                    (Sick)
-
 
                     <mat-checkbox class="selecter" (click)="emojiSelected=3">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-disappointed"></i>
+                        (Sick)
                     </mat-checkbox>
-                    <br>
-
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-angry"></i>
-                    (Angry)
-
 
                     <mat-checkbox class="selecter" (click)="emojiSelected=4">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-angry"></i>
+                        (Angry)
                     </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-cry"></i>
-                    (Sad)
-
 
                     <mat-checkbox class="selecter" (click)="emojiSelected=5">
+                        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+                        <i class="em em-cry"></i>
+                        (Sad)
                     </mat-checkbox>
 
 
-                </form>
+
+
+
+
+            </section>
+
+            </mat-card-content>
+
+            <mat-card-content>
+                <h2 class="example-h2">How you will rate your feeling?</h2>
+                <select class="EmojiRating" ng-model="data.singleSelect">
+                    <option (input)="emojiRating=1">1</option>
+                    <option (input)="emojiRating=2">2</option>
+                    <option (input)="emojiRating=3">3</option>
+                    <option (input)="emojiRating=4">4</option>
+                    <option (input)="emojiRating=5">5</option>
+                </select>
 
             </mat-card-content>
 
 
 
-
-
-            <h2 class="example-h2">How you will rate your feeling?</h2>
-            <mat-slider
-                class="slider"
-                [max]="5"
-                [min]="1"
-                [step]="1"
-                [thumb-label]="thumbLabel"
-                [(ngModel)]="emojiRating">
-            </mat-slider>
+            <label>textbox:
+                <input type="text" name="input" ng-model="example.text">
+            </label>
 
 
 
 
 
-
-
-
-
-            <h2 class="example-h2">More discripting of your feeling?</h2>
-            <form class="textbox">
-            <mat-form-field>
-                <textarea matInput (input)="description=$event.target.value"></textarea>
-            </mat-form-field>
-
-            <br>
-            </form>
-
-
-
-            <form class="SubmitButton">
-            <button mat-fab color="primary" (click)="sendEmojiRecord()" (click)="testNavigate()">submit </button>
-            </form>
-
-
-
-            <button (click)="testNavigate()">test</button>
+            <button (click)="sendEmojiRecord()">submit now</button>
 
         </mat-card>
     </div>
