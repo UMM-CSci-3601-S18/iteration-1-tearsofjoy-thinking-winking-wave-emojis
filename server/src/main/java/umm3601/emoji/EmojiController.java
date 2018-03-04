@@ -16,6 +16,12 @@ import static com.mongodb.client.model.Filters.eq;
 
 /**
  * Controller that manages requests for info about emojis.
+=======
+import static com.mongodb.client.model.Filters.eq;
+
+/**
+ * Controller that manages requests for info about users.
+>>>>>>> 1958b19ce2e6e7eb7aaaa6bf1572415dcb3f09f0
  */
 public class EmojiController {
 
@@ -23,40 +29,11 @@ public class EmojiController {
     private MongoDatabase database;
     private final MongoCollection<Document> emojiCollection;
 
-    /**
-     * Construct a controller for emojis.
-     *
-     * @param database the database containing emoji data
-     */
     public EmojiController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
-        emojiCollection = database.getCollection("emojis");
+        emojiCollection = database.getCollection("emojiRecords");
     }
-
-    /**
-     * Helper method that gets a single emoji specified by the `id`
-     * parameter in the request.
-     *
-     * @param id the Mongo ID of the desired emoji
-     * @return the desired emoji as a JSON object if the emoji with that ID is found,
-     * and `null` if no emoji with that ID is found
-     */
-    public String getEmoji(String id) {
-        FindIterable<Document> jsonEmojis
-            = emojiCollection
-            .find(eq("_id", new ObjectId(id)));
-
-        Iterator<Document> iterator = jsonEmojis.iterator();
-        if (iterator.hasNext()) {
-            Document emoji = iterator.next();
-            return emoji.toJson();
-        } else {
-            // We didn't find the desired emoji
-            return null;
-        }
-    }
-
 
     /** Helper method which iterates through the collection, receiving all
      * documents if no query parameter is specified. If the age query parameter
@@ -64,9 +41,12 @@ public class EmojiController {
      * specified age are found.
      *
      * @param queryParams
-     * @return an array of Emojis in a JSON formatted string
+     * @return an array of Users in a JSON formatted string
      */
-    public String getEmojis(Map<String, String[]> queryParams) {
+
+
+    // Will use this for reports
+    public String getEmojiRecords(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -84,34 +64,24 @@ public class EmojiController {
         }
 
         //FindIterable comes from mongo, Document comes from Gson
-        FindIterable<Document> matchingEmojis = emojiCollection.find(filterDoc);
+        FindIterable<Document> matchingEmojiRecords = emojiCollection.find(filterDoc);
 
-        return JSON.serialize(matchingEmojis);
+        return JSON.serialize(matchingEmojiRecords);
     }
 
-
-    /**
-     * Helper method which appends received emoji information to the to-be added document
-     *
-     * @param name
-     * @param age
-     * @param company
-     * @param email
-     * @return boolean after successfully or unsuccessfully adding a emoji
-     */
-    public String addNewEmoji(String name, int age, String company, String email) {
+    public String addNewEmojiRecord(String ownerID, int emojiID, int emojiRating, String date, String description) {
 
         Document newEmoji = new Document();
-        newEmoji.append("name", name);
-        newEmoji.append("age", age);
-        newEmoji.append("company", company);
-        newEmoji.append("email", email);
+        newEmoji.append("ownerID", ownerID);
+        newEmoji.append("emojiID", emojiID);
+        newEmoji.append("emojiRating", emojiRating);
+        newEmoji.append("date", date);
+        newEmoji.append("description", description);
 
         try {
             emojiCollection.insertOne(newEmoji);
             ObjectId id = newEmoji.getObjectId("_id");
-            System.err.println("Successfully added new emoji [_id=" + id + ", name=" + name + ", age=" + age + " company=" + company + " email=" + email + ']');
-            // return JSON.serialize(newEmoji);
+            System.err.println("Successfully added new emoji [_id=" + id + ", owner=" + ownerID + ", emoji=" + emojiID + ']');
             return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();

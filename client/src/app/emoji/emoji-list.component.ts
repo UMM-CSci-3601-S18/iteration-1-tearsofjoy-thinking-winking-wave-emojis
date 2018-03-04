@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmojiListService} from './emoji-list.service';
-import {Emoji} from './emoji';
+import {EmojiRecord} from './emojiRecord';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
 
@@ -15,14 +15,16 @@ import {MatDialog} from '@angular/material';
 
 export class EmojiListComponent implements OnInit {
     // These are public so that tests can reference them (.spec.ts)
-    public emojis: Emoji[];
-    public filteredEmojis: Emoji[];
+    public emojis: EmojiRecord[];
+    public filteredEmojis: EmojiRecord[];
 
     // These are the target values used in searching.
     // We should rename them to make that clearer.
     public emojiName: string;
-    public emojiAge: number;
+    public emojiSelected: number;
+    public emojiRating: number;
     public emojiCompany: string;
+
 
     // The ID of the
     private highlightedID: {'$oid': string} = { '$oid': '' };
@@ -32,58 +34,29 @@ export class EmojiListComponent implements OnInit {
 
     }
 
-    isHighlighted(emoji: Emoji): boolean {
+    isHighlighted(emoji: EmojiRecord): boolean {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
+    sendEmojiRecord(): void {
 
+        const newEmojiRecord: EmojiRecord = {_id: '',
+            ownerID: '',
+            emoji: this.emojiSelected,
+            rating: this.emojiRating,
+            date: Date.prototype.toDateString(),
+            description: ''};
 
-    public filterEmojis(searchName: string, searchAge: number): Emoji[] {
-
-        this.filteredEmojis = this.emojis;
-
-        // Filter by name
-        if (searchName != null) {
-            searchName = searchName.toLocaleLowerCase();
-
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchName || emoji.name.toLowerCase().indexOf(searchName) !== -1;
-            });
-        }
-
-        // Filter by age
-        if (searchAge != null) {
-            this.filteredEmojis = this.filteredEmojis.filter(emoji => {
-                return !searchAge || emoji.age == searchAge;
-            });
-        }
-
-        return this.filteredEmojis;
-    }
-
-    /**
-     * Starts an asynchronous operation to update the emojis list
-     *
-     */
-    refreshEmojis(): Observable<Emoji[]> {
-        // Get Emojis returns an Observable, basically a "promise" that
-        // we will get the data from the server.
-        //
-        // Subscribe waits until the data is fully downloaded, then
-        // performs an action on it (the first lambda)
-
-        const emojiListObservable: Observable<Emoji[]> = this.emojiListService.getEmojis();
-        emojiListObservable.subscribe(
-            emojis => {
-                this.emojis = emojis;
-                this.filterEmojis(this.emojiName, this.emojiAge);
+        this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
+            addUserResult => {
+                this.highlightedID = addUserResult;
             },
             err => {
-                console.log(err);
+                // This should probably be turned into some sort of meaningful response.
+                console.log('There was an error adding the user.');
+                console.log('The error was ' + JSON.stringify(err));
             });
-        return emojiListObservable;
     }
-
 
     loadService(): void {
         this.emojiListService.getEmojis(this.emojiCompany).subscribe(
@@ -99,7 +72,6 @@ export class EmojiListComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.refreshEmojis();
         this.loadService();
     }
 }

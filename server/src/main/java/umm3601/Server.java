@@ -6,7 +6,6 @@ import spark.Request;
 import spark.Response;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
-
 import umm3601.emoji.EmojiController;
 import umm3601.emoji.EmojiRequestHandler;
 
@@ -23,14 +22,12 @@ public class Server {
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase theDatabase = mongoClient.getDatabase(userDatabaseName);
 
-        MongoDatabase emojiDatabase = mongoClient.getDatabase(userDatabaseName);
-
-        UserController userController = new UserController(userDatabase);
+        UserController userController = new UserController(theDatabase);
         UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
 
-        EmojiController emojiController = new EmojiController(emojiDatabase);
+        EmojiController emojiController = new EmojiController(theDatabase);
         EmojiRequestHandler emojiRequestHandler = new EmojiRequestHandler(emojiController);
 
         //Configure Spark
@@ -57,7 +54,6 @@ public class Server {
 
         before((request, response) -> response.header("Access-Control-Allow-Origin", "*"));
 
-
         // Simple example route
         get("/hello", (req, res) -> "Hello World");
 
@@ -75,7 +71,26 @@ public class Server {
         get("api/users/:id", userRequestHandler::getUserJSON);
         post("api/users/new", userRequestHandler::addNewUser);
 
-        get("api/emoji", emojiRequestHandler::getEmojis);
+        /// Emoji Endpoints ///////////////////////////
+        /////////////////////////////////////////////
+
+
+        /*Emoji API plans
+            Data that will be sent when an emoji is selected
+                Owner ID
+                Emoji picked
+                rating 1-5
+                Date/Time
+                Description of reasons for picking emoji
+
+            path: "/emojiRecords"
+            path: "/emojiRecords/new"
+        */
+
+        //List emojis, filtered using query parameters
+
+        get("api/emojiRecords", emojiRequestHandler::getEmojiRecords);
+        post("api/emojiRecords/new", emojiRequestHandler::addNewEmojiRecord);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
