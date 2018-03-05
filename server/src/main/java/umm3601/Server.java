@@ -74,7 +74,6 @@ public class Server {
         /// Emoji Endpoints ///////////////////////////
         /////////////////////////////////////////////
 
-
         /*Emoji API plans
             Data that will be sent when an emoji is selected
                 Owner ID

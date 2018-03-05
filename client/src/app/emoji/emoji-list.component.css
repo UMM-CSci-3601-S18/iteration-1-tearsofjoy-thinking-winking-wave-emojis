@@ -13,11 +13,7 @@
 }
 
 
-#happy{
-
-
-}
-
-.md-button{
-
+.emojiselect{
+    display: inline-flex;
+    flex-direction: column;
 }
