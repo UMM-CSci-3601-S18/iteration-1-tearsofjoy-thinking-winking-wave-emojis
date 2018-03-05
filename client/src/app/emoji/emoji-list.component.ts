@@ -24,11 +24,9 @@ export class EmojiListComponent implements OnInit {
     public emojiSelected: number = -1;
     public emojiRating: number = -1;
     public description: string = '';
-    thumbLabel = true;
-
-
+    thumbLabel = true; // used for the slider
     public displayEmoji: boolean = true;
-    //public emojiRating: number = -1;
+    public ownerID: string = "tempID";
 
 
     // The ID of the
@@ -54,11 +52,12 @@ export class EmojiListComponent implements OnInit {
         if(this.emojiSelected > 0 && this.emojiSelected < 6 && this.emojiRating > 0 && this.emojiRating < 6){
             console.log("Entered if statement to send emoji");
             const newEmojiRecord: EmojiRecord = {_id: '',
-                ownerID: 'tempID',
+                ownerID: this.ownerID,
                 emoji: this.emojiSelected,
                 rating: this.emojiRating,
-                date: Date.prototype.toDateString(),
-                description: ''};
+                //date: Date.prototype.toDateString(),
+                date: "March 8, 2018",
+                description: this.description};
 
             console.log("created emoji object to be sent");
             this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(

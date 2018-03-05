@@ -18,7 +18,8 @@ describe('Adding an emoji record to the database', () => {
         ownerID: 'Sam',
         emoji: 5,
         rating: 5,
-        date: Date.prototype.toDateString(),
+        //date: Date.prototype.toDateString(),
+        date: "March 8, 2018",
         description: 'sam@this.and.that'
     };
     const newId = 'sam_id';
