@@ -77,6 +77,7 @@ export class EmojiListService {
     }
 
     addNewEmojiRecord(newEmoji: EmojiRecord): Observable<{'$oid': string}> {
+        console.log("it entered the observable addNewEmojiRecord() function")
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json'

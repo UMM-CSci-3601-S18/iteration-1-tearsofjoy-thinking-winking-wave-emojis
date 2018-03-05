@@ -34,18 +34,18 @@ public class EmojiRequestHandler {
                     BasicDBObject dbO = (BasicDBObject) o;
 
                     String ownerID = dbO.getString("ownerID");
-                    int emojiID = dbO.getInt("emojiID");
-                    int emojiRating = dbO.getInt("emojiRating");
+                    int emoji = dbO.getInt("emoji");
+                    int rating = dbO.getInt("rating");
                     String date = dbO.getString("date");
                     String description = dbO.getString("description");
 
                     System.err.println("Adding new record " +
                         "[owner =" + ownerID + ", " +
-                        "emojiID =" + emojiID + " " +
-                        "emojiRating =" + emojiRating + " " +
+                        "emoji =" + emoji + " " +
+                        "rating =" + rating + " " +
                         "date =" + date + " " +
                         "description =" + description + ']');
-                    return emojiController.addNewEmojiRecord(ownerID, emojiID, emojiRating, date, description).toString();
+                    return emojiController.addNewEmojiRecord(ownerID, emoji, rating, date, description).toString();
                 }
                 catch(NullPointerException e)
                 {
