@@ -8,7 +8,7 @@
             <mat-card-title>Select Emoji</mat-card-title>
             <mat-divider></mat-divider>
 
-
+            <h2 class="example-h2">How's your feeling today?</h2>
 
                 <mat-radio-group class="emojiselect" [(ngModel)]="emojiSelected">
                     <mat-radio-button class="emojibutton" value= 1>
@@ -37,8 +37,8 @@
 
 
 
-            <mat-card-content>
-                <h2 class="example-h2">How's your feeling today?</h2>
+            <!--<mat-card-content>
+
                 <form class="EmojiSelect">
 
 
@@ -90,6 +90,7 @@
                 </form>
 
             </mat-card-content>
+            -->
 
 
 
@@ -105,12 +106,6 @@
                 [(ngModel)]="emojiRating"
                 (click)="emojiRating=$event.target.value">
             </mat-slider>
-
-
-
-
-
-
 
 
 
