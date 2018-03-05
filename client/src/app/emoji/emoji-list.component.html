@@ -104,7 +104,7 @@
                 [step]="1"
                 [thumb-label]="thumbLabel"
                 [(ngModel)]="emojiRating"
-                (click)="emojiRating=$event.target.value">
+                (input)="emojiRating=$event.value">
             </mat-slider>
 
 
@@ -112,7 +112,7 @@
             <h2 class="example-h2">More discripting of your feeling?</h2>
             <form class="textbox">
             <mat-form-field>
-                <textarea matInput (input)="description=$event.target.value"></textarea>
+                <textarea matInput (input)="description=$event.value"></textarea>
             </mat-form-field>
 
             <br>
@@ -126,7 +126,7 @@
 
 
 
-            <button (click)="testNavigate()">test</button>
+            <button (click)="displayValues()">test</button>
 
         </mat-card>
     </div>

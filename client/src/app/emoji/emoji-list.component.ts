@@ -27,7 +27,6 @@ export class EmojiListComponent implements OnInit {
     thumbLabel = true;
 
 
-
     public displayEmoji: boolean = true;
     //public emojiRating: number = -1;
 
@@ -44,6 +43,11 @@ export class EmojiListComponent implements OnInit {
         return emoji._id['$oid'] === this.highlightedID['$oid'];
     }
 
+    displayValues(): void{
+        console.log("emojiSelected: " + this.emojiSelected);
+        console.log("emojiRating: " + this.emojiRating);
+        console.log("description: " + this.description);
+    }
     sendEmojiRecord(): void {
 
         console.log("Entered function to send emoji");
