@@ -23,6 +23,8 @@ export class EmojiListComponent implements OnInit {
 
     public emojiSelected: number = -1;
     public emojiRating: number = -1;
+    public displayEmoji: boolean = true;
+    //public emojiRating: number = -1;
 
 
     // The ID of the
