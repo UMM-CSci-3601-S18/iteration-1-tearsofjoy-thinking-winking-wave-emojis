@@ -11,19 +11,11 @@ export class ResponseComponent implements OnInit {
 
     step = -1;
 
-    setStep(index: number) {
+    setStep(step: number) {
         if(window.location.href.indexOf ("http://localhost:9000/response#happyMessage")){
-            this.step = index;
+            this.step = 0;
 
         }
-    }
-
-    nextStep() {
-        this.step++;
-    }
-
-    prevStep() {
-        this.step--;
     }
 
     loadService(): void {
