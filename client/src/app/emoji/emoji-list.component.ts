@@ -99,6 +99,11 @@ export class EmojiListComponent implements OnInit {
             window.location.replace("http://localhost:9000/response#sadMessage");
         }
 
+
+    }
+    //
+    thankYouPage(){
+        window.location.replace("")
     }
 
     loadService(): void {

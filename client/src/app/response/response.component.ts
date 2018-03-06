@@ -11,9 +11,9 @@ export class ResponseComponent implements OnInit {
 
     step = -1;
 
-    setStep(step: number) {
-        if(window.location.href.indexOf ("http://localhost:9000/response#happyMessage")){
-            this.step = 0;
+    setStep() {
+        if(window.location.href.indexOf ("http://localhost:9000/response#disappointMessage")){
+            this.step = 1;
 
         }
     }
