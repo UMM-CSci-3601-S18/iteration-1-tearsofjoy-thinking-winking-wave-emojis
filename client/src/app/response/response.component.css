@@ -1,10 +1,20 @@
 
 [layout-gt-sm="row"] {
-    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Ice-Desktop-Wallpapers-PIC-WPE007333.jpg");
+    background-image: url("https://orig00.deviantart.net/35a0/f/2007/170/6/c/untitled_texture_cxvii_by_aqueous_sun_textures.jpg");
 }
 
-body{
-    background:none;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    border-radius: 25px;
+mat-card.mat-card{
+    margin: 1%;
+    background: none;
+    mso-border-shadow: yes;
+}
+mat-expansion-panel {
+    background: none;
+    border-radius: 3px;
+}
+
+#responseCardTitle{
+    font-size: 200%;
+    font-family: cursive;
+    margin-left: 28%;
 }

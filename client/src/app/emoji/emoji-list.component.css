@@ -20,10 +20,15 @@
 
 mat-card.mat-card{
     margin: 5%;
-    
+    background: none;
+    mso-border-shadow: yes;
 }
 
-
+#emojiCardTitle{
+    font-size: 200%;
+    font-family: cursive;
+    margin-left: 28%;
+}
 
 mat-panel-title.mat-expansion-panel-header-title{
 
@@ -32,12 +37,13 @@ mat-panel-title.mat-expansion-panel-header-title{
 
 .mat-card-content{
     align-content: center;
+    margin-left: 15%;
 }
 
 
 
 
 [layout-gt-sm="row"] {
-    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Ice-Desktop-Wallpapers-PIC-WPE007333.jpg");
+    background-image: url("https://orig00.deviantart.net/35a0/f/2007/170/6/c/untitled_texture_cxvii_by_aqueous_sun_textures.jpg");
 }
 
