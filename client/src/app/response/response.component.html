@@ -5,21 +5,49 @@
 <div class="responses" layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title>Try These!</mat-card-title>
+            <mat-card-title>Have You Ever Tried These?</mat-card-title>
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <h2 class="example-h2">Videos</h2>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header id="Panel-Header">
+                        3 Tips for Better Health Care
+                    </mat-expansion-panel-header>
+                    Good health care happens through a partnership between you and your health-care provider. Here are some tips on how you can work with your providers to get the best health care.
+                    <br/>
 
-                <section class="Videos">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/2CfLodvGN34" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </section>
+                       <br/>
 
-                <h2 class="example-h2">Gifs</h2>
-                <section class="Gifs">
-                <iframe src='https://gfycat.com/ifr/CornyShortAsiandamselfly' frameborder='0' scrolling='no' allowfullscreen width='640' height='640'></iframe>
-                </section>
+                    <u>1.Take part in your health care.</u>
+                    <br/>
+                    >Tell each provider about what health care you have had and who has provided it.<br/>
+                    >Let them know about any other treatments you have tried that were not prescribed by a doctor, such as herbal treatments, home remedies or acupuncture.<br/>
+                    >Tell your providers about any cultural and spiritual needs you may have.<br/>
+                    >To be sure you understand health-care instructions, repeat them to a family member or friend.<br/>
+                    >Let any provider know if you are not sure about any part of your care. If you think something might not be safe, tell your providers right away.<br/>
 
+
+                       <br/>
+
+                    <u>2.Bring a family member or friend with you to be your partner in care.</u>
+                    <br/>
+                    >Pick someone who will speak up for you and help get things done for you.<br/>
+                    >Show your partner in care where to find your medical records at home. Let them know what medicines you take and where they are located.<br/>
+                    >Plan for your partner in care to stay with you during exams, treatments and in the hospital.<br/>
+                    >It’s OK for your partner in care to ask questions and take notes.<br/>
+
+
+                       <br/>
+
+                    <u>3.Know about your medicines.</u>
+                    <br/>
+                    >Ask your provider what a new medicine is for and how it will help you.<br/>
+                    >Have the brand names and any other names for the medicine written down for you.<br/>
+                    >Find out how to take the medicine and for how long.<br/>
+                    >Ask the pharmacist for written information about what to watch for when you take the medicine.<br/>
+
+
+                </mat-expansion-panel>
             </mat-card-content>
         </mat-card>
 
@@ -28,7 +56,17 @@
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <a name="happyMessage">happy suggestions</a>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header id="Panel-Happy">
+                        Why don't you try these if you feel happy:
+                    </mat-expansion-panel-header>
+                    <a name="happyMessage">happy suggestions</a>
+                    <br/>
+                    1.<br/>
+                    2.<br/>
+                    3.<br/>
+                    4.<br/>
+                </mat-expansion-panel>
             </mat-card-content>
 
 
@@ -40,7 +78,25 @@
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <a name="disappointMessage">Disappoint suggestions</a>
+                <mat-expansion-panel>
+                    <a name="disappointMessage">Disappoint suggestions</a>
+                    <br/>
+                    1.<br/>
+                    2.<br/>
+                    3.<br/>
+                    4.<br/>
+                    <mat-expansion-panel-header id="Panel-Disappoint">
+                        Why don't you try these if you feel disappoint:
+                    </mat-expansion-panel-header>
+                       <br/>
+
+                    <section class="Videos">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/2CfLodvGN34" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </section>
+                </mat-expansion-panel>
+
+
+
             </mat-card-content>
 
 
@@ -51,29 +107,67 @@
             <mat-divider></mat-divider>
 
             <mat-card-content>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header id="Panel-Sick">
+                        Why don't you try these if you feel sick:
+                    </mat-expansion-panel-header>
                 <a name="sickMessage">Sick suggestions</a>
+                    <br/>
+                    1.<br/>
+                    2.<br/>
+                    3.<br/>
+                    4.<br/>
+                </mat-expansion-panel>
+
+
             </mat-card-content>
 
 
         </mat-card>
 
         <mat-card>
-            <mat-card-title>Disappoint</mat-card-title>
+            <mat-card-title>Angry</mat-card-title>
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <a name="angryMessage">Angry suggestions</a>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header id="Panel-Angry">
+                        Why don't you try these if you feel angry:
+                    </mat-expansion-panel-header>
+                    <a name="angryMessage">Angry suggestions</a>
+                    <br/>
+                    1.<br/>
+                    2.<br/>
+                    3.<br/>
+                    4.<br/>
+                    <h2 class="example-h2">Gifs</h2>
+                    <section class="Gifs">
+                        <iframe src='https://gfycat.com/ifr/CornyShortAsiandamselfly' frameborder='0' scrolling='no' allowfullscreen width='300' height='300'></iframe>
+                    </section>
+
+                </mat-expansion-panel>
+
             </mat-card-content>
 
 
         </mat-card>
 
         <mat-card>
-            <mat-card-title>Disappoint</mat-card-title>
+            <mat-card-title>Sad</mat-card-title>
             <mat-divider></mat-divider>
 
             <mat-card-content>
-                <a name="sadMessage">Sad suggestions</a>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header id="Panel-Sad">
+                        Why don't you try these if you feel sad:
+                    </mat-expansion-panel-header>
+                    <a name="sadMessage">Sad suggestions</a>
+                    <br/>
+                    1.<br/>
+                    2.<br/>
+                    3.<br/>
+                    4.<br/>
+                </mat-expansion-panel>
             </mat-card-content>
 
 

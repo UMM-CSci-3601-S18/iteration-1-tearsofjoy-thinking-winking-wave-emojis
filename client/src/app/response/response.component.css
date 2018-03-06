@@ -1,2 +1,10 @@
 
+[layout-gt-sm="row"] {
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Ice-Desktop-Wallpapers-PIC-WPE007333.jpg");
+}
 
+body{
+    background:none;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    border-radius: 25px;
+}

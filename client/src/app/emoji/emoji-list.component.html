@@ -14,22 +14,27 @@
                     <mat-radio-button class="emojibutton" value= 1>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-blush"></i>
+                        Happy
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 2>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-confused"></i>
+                        Disappoint
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 3>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-disappointed"></i>
+                        Sick
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 4>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-angry"></i>
+                        Angry
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 5>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-cry"></i>
+                        Sad
                     </mat-radio-button>
                 </mat-radio-group>
 
@@ -37,66 +42,11 @@
 
 
 
-            <!--<mat-card-content>
-
-                <form class="EmojiSelect">
-
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-blush" id="happy"></i>
-                    (Happy)
-
-                    <mat-checkbox class="selecter" (click)="emojiSelected=1">
-                    </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-confused"></i>
-                    (Disappoint)
-
-
-                    <mat-checkbox class="selecter" (click)="emojiSelected=2">
-                    </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-disappointed"></i>
-                    (Sick)
-
-
-                    <mat-checkbox class="selecter" (click)="emojiSelected=3">
-                    </mat-checkbox>
-                    <br>
-
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-angry"></i>
-                    (Angry)
-
-
-                    <mat-checkbox class="selecter" (click)="emojiSelected=4">
-                    </mat-checkbox>
-                    <br>
-
-                    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                    <i class="em em-cry"></i>
-                    (Sad)
-
-
-                    <mat-checkbox class="selecter" (click)="emojiSelected=5">
-                    </mat-checkbox>
-
-
-                </form>
-
-            </mat-card-content>
-            -->
-
-
 
 
 
             <h2 class="example-h2">How you will rate your feeling?</h2>
+            <p>(1 means a little, 5 means extremely)</p>
             <mat-slider
                 class="slider"
                 [max]="5"
@@ -109,13 +59,12 @@
 
 
 
-            <h2 class="example-h2">More discripting of your feeling?</h2>
+            <h2 class="example-h2">More description of your feeling?</h2>
             <form class="textbox">
             <mat-form-field>
-                <textarea matInput (input)="description=$event.value"></textarea>
+                <textarea matInput id="emojiDescription" #input placeholder="Description here." (input)="description=$event.value"></textarea>
             </mat-form-field>
 
-            <br>
             </form>
 
 
@@ -124,9 +73,6 @@
             <button mat-fab color="primary" (click)="sendEmojiRecord(); testNavigate()">submit </button>
             </form>
 
-
-
-            <button (click)="displayValues()">test</button>
 
         </mat-card>
     </div>

@@ -17,3 +17,27 @@
     display: inline-flex;
     flex-direction: column;
 }
+
+mat-card.mat-card{
+    margin: 5%;
+    
+}
+
+
+
+mat-panel-title.mat-expansion-panel-header-title{
+
+    font-size: 150%;
+}
+
+.mat-card-content{
+    align-content: center;
+}
+
+
+
+
+[layout-gt-sm="row"] {
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Ice-Desktop-Wallpapers-PIC-WPE007333.jpg");
+}
+
