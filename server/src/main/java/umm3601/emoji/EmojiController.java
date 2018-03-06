@@ -20,7 +20,7 @@ import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.eq;
 
 /**
- * Controller that manages requests for info about users.
+ * Controller that manages requests for info about Emojis.
 >>>>>>> 1958b19ce2e6e7eb7aaaa6bf1572415dcb3f09f0
  */
 public class EmojiController {
@@ -41,7 +41,7 @@ public class EmojiController {
      * specified age are found.
      *
      * @param queryParams
-     * @return an array of Users in a JSON formatted string
+     * @return an array of Emojis in a JSON formatted string
      */
 
 
@@ -74,5 +74,43 @@ public class EmojiController {
             me.printStackTrace();
             return null;
         }
+    }
+
+    public String getEmoji(String id) {
+        FindIterable<Document> jsonEmojis
+            = emojiCollection
+            .find(eq("_id", new ObjectId(id)));
+
+        Iterator<Document> iterator = jsonEmojis.iterator();
+        if (iterator.hasNext()) {
+            Document emoji = iterator.next();
+            return emoji.toJson();
+        } else {
+            // We didn't find the desired emoji
+            return null;
+        }
+    }
+
+    public String getEmojis(Map<String, String[]> queryParams) {
+
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("age")) {
+            int targetAge = Integer.parseInt(queryParams.get("age")[0]);
+            filterDoc = filterDoc.append("age", targetAge);
+        }
+
+        if (queryParams.containsKey("company")) {
+            String targetContent = (queryParams.get("company")[0]);
+            Document contentRegQuery = new Document();
+            contentRegQuery.append("$regex", targetContent);
+            contentRegQuery.append("$options", "i");
+            filterDoc = filterDoc.append("company", contentRegQuery);
+        }
+
+        //FindIterable comes from mongo, Document comes from Gson
+        FindIterable<Document> matchingEmojis = emojiCollection.find(filterDoc);
+
+        return JSON.serialize(matchingEmojis);
     }
 }
