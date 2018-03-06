@@ -50,31 +50,18 @@ public class EmojiController {
 
         Document filterDoc = new Document();
 
-        if (queryParams.containsKey("age")) {
-            int targetAge = Integer.parseInt(queryParams.get("age")[0]);
-            filterDoc = filterDoc.append("age", targetAge);
-        }
-
-        if (queryParams.containsKey("company")) {
-            String targetContent = (queryParams.get("company")[0]);
-            Document contentRegQuery = new Document();
-            contentRegQuery.append("$regex", targetContent);
-            contentRegQuery.append("$options", "i");
-            filterDoc = filterDoc.append("company", contentRegQuery);
-        }
-
         //FindIterable comes from mongo, Document comes from Gson
         FindIterable<Document> matchingEmojiRecords = emojiCollection.find(filterDoc);
 
         return JSON.serialize(matchingEmojiRecords);
     }
 
-    public String addNewEmojiRecord(String ownerID, int emojiID, int emojiRating, String date, String description) {
+    public String addNewEmojiRecord(String ownerID, String emojiID, String emojiRating, String date, String description) {
 
         Document newEmoji = new Document();
         newEmoji.append("ownerID", ownerID);
-        newEmoji.append("emojiID", emojiID);
-        newEmoji.append("emojiRating", emojiRating);
+        newEmoji.append("emoji", emojiID);
+        newEmoji.append("rating", emojiRating);
         newEmoji.append("date", date);
         newEmoji.append("description", description);
 
