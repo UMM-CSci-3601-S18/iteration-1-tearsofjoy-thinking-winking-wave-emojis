@@ -62,7 +62,10 @@ describe('Adding an emoji record to the database', () => {
     }));
 
     it('calls EmojiListService.sendEmojiRecord', () => {
-        expect(calledEmojiRecord).toBeNull();
+        emojiList.ownerID = 'Sam';
+        emojiList.emojiSelected = 5;
+        emojiList.emojiRating = 5;
+        emojiList.description = 'sam@this.and.that';
         emojiList.sendEmojiRecord();
         expect(calledEmojiRecord).toEqual(newEmojiRecord);
     });

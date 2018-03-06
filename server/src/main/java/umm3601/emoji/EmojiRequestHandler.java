@@ -34,12 +34,12 @@ public class EmojiRequestHandler {
                     BasicDBObject dbO = (BasicDBObject) o;
 
                     String ownerID = dbO.getString("ownerID");
-                    int emoji = dbO.getInt("emoji");
-                    int rating = dbO.getInt("rating");
+                    String emoji = dbO.getString("emoji");
+                    String rating = dbO.getString("rating");
                     String date = dbO.getString("date");
                     String description = dbO.getString("description");
 
-                    System.err.println("Adding new record " +
+                    System.out.println("Adding new record " +
                         "[owner =" + ownerID + ", " +
                         "emoji =" + emoji + " " +
                         "rating =" + rating + " " +
