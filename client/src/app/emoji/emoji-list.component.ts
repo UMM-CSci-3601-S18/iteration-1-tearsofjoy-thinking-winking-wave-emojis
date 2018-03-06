@@ -47,6 +47,7 @@ export class EmojiListComponent implements OnInit {
         console.log("description: " + this.description);
     }
     sendEmojiRecord(): void {
+        this.displayValues();
 
         console.log("Entered function to send emoji");
         if(this.emojiSelected > 0 && this.emojiSelected < 6 && this.emojiRating > 0 && this.emojiRating < 6){
@@ -77,7 +78,7 @@ export class EmojiListComponent implements OnInit {
     //This is test function that rediarect to other page. It works
     //window.open: open other window
     //window.location.replace: replace window
-    testNavigate(){
+    testNavigate(): void{
         if(this.emojiSelected == 1){
             window.location.replace("http://localhost:9000/response#happyMessage");
         }
