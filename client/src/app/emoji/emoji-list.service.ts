@@ -16,48 +16,11 @@ export class EmojiListService {
     }
 
     getEmojis(emojiCompany?: string): Observable<EmojiRecord[]> {
-        this.filterByCompany(emojiCompany);
         return this.http.get<EmojiRecord[]>(this.emojiUrl);
     }
 
     getEmojiById(id: string): Observable<EmojiRecord> {
         return this.http.get<EmojiRecord>(this.emojiUrl + '/' + id);
-    }
-
-    /*
-    //This method looks lovely and is more compact, but it does not clear previous searches appropriately.
-    //It might be worth updating it, but it is currently commented out since it is not used (to make that clear)
-    getEmojisByCompany(emojiCompany?: string): Observable<Emoji> {
-        this.emojiUrl = this.emojiUrl + (!(emojiCompany == null || emojiCompany == "") ? "?company=" + emojiCompany : "");
-        console.log("The url is: " + this.emojiUrl);
-        return this.http.request(this.emojiUrl).map(res => res.json());
-    }
-    */
-
-    filterByCompany(emojiCompany?: string): void {
-        if (!(emojiCompany == null || emojiCompany === '')) {
-            if (this.parameterPresent('company=') ) {
-                // there was a previous search by company that we need to clear
-                this.removeParameter('company=');
-            }
-            if (this.emojiUrl.indexOf('?') !== -1) {
-                // there was already some information passed in this url
-                this.emojiUrl += 'company=' + emojiCompany + '&';
-            } else {
-                // this was the first bit of information to pass in the url
-                this.emojiUrl += '?company=' + emojiCompany + '&';
-            }
-        } else {
-            // there was nothing in the box to put onto the URL... reset
-            if (this.parameterPresent('company=')) {
-                let start = this.emojiUrl.indexOf('company=');
-                const end = this.emojiUrl.indexOf('&', start);
-                if (this.emojiUrl.substring(start - 1, start) === '?') {
-                    start = start - 1;
-                }
-                this.emojiUrl = this.emojiUrl.substring(0, start) + this.emojiUrl.substring(end + 1);
-            }
-        }
     }
 
     private parameterPresent(searchParam: string) {

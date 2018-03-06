@@ -68,7 +68,7 @@ public class EmojiController {
         try {
             emojiCollection.insertOne(newEmoji);
             ObjectId id = newEmoji.getObjectId("_id");
-            System.err.println("Successfully added new emoji [_id=" + id + ", owner=" + ownerID + ", emoji=" + emojiID + ']');
+            System.out.println("Successfully added new emoji [_id=" + id + ", owner=" + ownerID + ", emoji=" + emojiID + ']');
             return JSON.serialize(id);
         } catch(MongoException me) {
             me.printStackTrace();
