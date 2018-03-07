@@ -145,6 +145,8 @@ public class EmojiControllerSpec
 
     }
 */
+
+/*
     @Test
     public void addEmojiTest(){
         String newId = emojiController.addNewEmojiRecord("5aa060a983e4f144e78135c5", "1", "5", "March 8, 2018", "I'm very happy!");
@@ -162,6 +164,8 @@ public class EmojiControllerSpec
             .collect(Collectors.toList());
         assertEquals("Should return _id of new emoji", "5aa060a983e4f144e78135c5", _id.get(0));
     }
+*/
+
 /*
     @Test
     public void getEmojiByCompany(){
