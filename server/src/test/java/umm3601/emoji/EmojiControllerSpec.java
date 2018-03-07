@@ -44,11 +44,11 @@ public class EmojiControllerSpec
 */
 
         testEmojis.add(Document.parse("{\n" +
-                "                    _id: \"5aa060a983e4f144e78135c2\",\n" +
-                "                    emoji: \"1\",\n" +
-                "                    rating: 1,\n" +
-                "                    description: \"I'm a little happy!\"" +
-                                "}"));
+            "                    _id: \"5aa060a983e4f144e78135c2\",\n" +
+            "                    emoji: \"1\",\n" +
+            "                    rating: 1,\n" +
+            "                    description: \"I'm a little happy!\"" +
+            "}"));
         testEmojis.add(Document.parse("{\n" +
             "                    _id: \"5aa060a983e4f144e78135c3\",\n" +
             "                    emoji: \"2\",\n" +
@@ -96,6 +96,7 @@ public class EmojiControllerSpec
         BsonDocument doc = val.asDocument();
         return ((BsonString) doc.get("emoji")).getValue();
     }
+
 /*
     @Test
     public void getAllEmojis() {
@@ -104,30 +105,77 @@ public class EmojiControllerSpec
         BsonArray docs = parseJsonArray(jsonResult);
 
         assertEquals("Should be 4 emojis", 4, docs.size());
-        List<String> emojis = docs
-                .stream()
-                .map(EmojiControllerSpec::getEmoji)
-                .sorted()
-                .collect(Collectors.toList());
-        List<String> expectedEmoji = Arrays.asList("1", "2", "3", "4");
-        assertEquals("Emojis should match", expectedEmoji, emojis);
+        List<String> names = docs
+            .stream()
+            .map(EmojiControllerSpec::getName)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedNames = Arrays.asList("Chris", "Jamie", "Pat", "Sam");
+        assertEquals("Names should match", expectedNames, names);
     }
 
     @Test
-    public void getEmojisWhoAreHappy() {
+    public void getEmojisWhoAre37() {
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("emoji", new String[] { "1" });
+        argMap.put("age", new String[] { "37" });
         String jsonResult = emojiController.getEmojis(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        assertEquals("Should be 1 emojis", 1, docs.size());
-        List<String> emojis = docs
-                .stream()
-                .map(EmojiControllerSpec::getEmoji)
-                .sorted()
-                .collect(Collectors.toList());
-        List<String> expectedEmoji = Arrays.asList("1");
-        assertEquals("Emojis should match", expectedEmoji, emojis);
+        assertEquals("Should be 2 emojis", 2, docs.size());
+        List<String> names = docs
+            .stream()
+            .map(EmojiControllerSpec::getName)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedNames = Arrays.asList("Jamie", "Pat");
+        assertEquals("Names should match", expectedNames, names);
+    }
+
+    @Test
+    public void getSamById() {
+        String jsonResult = emojiController.getEmoji(samsId.toHexString());
+        Document sam = Document.parse(jsonResult);
+        assertEquals("Name should match", "Sam", sam.get("name"));
+        String noJsonResult = emojiController.getEmoji(new ObjectId().toString());
+        assertNull("No name should match",noJsonResult);
+
+    }
+
+    @Test
+    public void addEmojiTest(){
+        String newId = emojiController.addNewEmoji("Brian",22,"umm", "brian@yahoo.com");
+
+        assertNotNull("Add new emoji should return true when emoji is added,", newId);
+        Map<String, String[]> argMap = new HashMap<>();
+        argMap.put("age", new String[] { "22" });
+        String jsonResult = emojiController.getEmojis(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+
+        List<String> name = docs
+            .stream()
+            .map(EmojiControllerSpec::getName)
+            .sorted()
+            .collect(Collectors.toList());
+        assertEquals("Should return name of new emoji", "Brian", name.get(0));
+    }
+
+    @Test
+    public void getEmojiByCompany(){
+        Map<String, String[]> argMap = new HashMap<>();
+        //Mongo in EmojiController is doing a regex search so can just take a Java Reg. Expression
+        //This will search the company starting with an I or an F
+        argMap.put("company", new String[] { "[I,F]" });
+        String jsonResult = emojiController.getEmojis(argMap);
+        BsonArray docs = parseJsonArray(jsonResult);
+        assertEquals("Should be 3 emojis", 3, docs.size());
+        List<String> name = docs
+            .stream()
+            .map(EmojiControllerSpec::getName)
+            .sorted()
+            .collect(Collectors.toList());
+        List<String> expectedName = Arrays.asList("Jamie","Pat","Sam");
+        assertEquals("Names should match", expectedName, name);
+
     }
 */
 }
