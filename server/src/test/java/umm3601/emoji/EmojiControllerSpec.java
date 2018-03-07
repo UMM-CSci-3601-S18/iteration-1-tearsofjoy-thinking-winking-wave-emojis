@@ -45,18 +45,21 @@ public class EmojiControllerSpec
 
         testEmojis.add(Document.parse("{\n" +
             "                    _id: \"5aa060a983e4f144e78135c2\",\n" +
+            "                    date: \"March 8, 2018\",\n" +
             "                    emoji: \"1\",\n" +
             "                    rating: 1,\n" +
             "                    description: \"I'm a little happy!\"" +
             "}"));
         testEmojis.add(Document.parse("{\n" +
             "                    _id: \"5aa060a983e4f144e78135c3\",\n" +
+            "                    date: \"March 8, 2018\",\n" +
             "                    emoji: \"2\",\n" +
             "                    rating: 5,\n" +
             "                    description: \"I'm very disappointed!\"" +
             "}"));
         testEmojis.add(Document.parse("{\n" +
             "                    _id: \"5aa060a983e4f144e78135c4\",\n" +
+            "                    date: \"March 8, 2018\",\n" +
             "                    emoji: \"3\",\n" +
             "                    rating: 5,\n" +
             "                    description: \"I'm very sick!\"" +
@@ -65,7 +68,8 @@ public class EmojiControllerSpec
         samsId = new ObjectId();
         BasicDBObject sam = new BasicDBObject("_id", samsId);
         sam = sam.append("emoji", "4")
-                .append("_id", "5aa060a983e4f144e78135c4")
+                .append("_id", "5aa060a983e4f144e78135c5")
+                .append("date", "March 8, 2018")
                 .append("rating", "1")
                 .append("description", "I'm a little angry!");
 
@@ -92,9 +96,9 @@ public class EmojiControllerSpec
         return arrayReader.decode(reader, DecoderContext.builder().build());
     }
 
-    private static String getEmoji(BsonValue val) {
+    private static String get_id(BsonValue val) {
         BsonDocument doc = val.asDocument();
-        return ((BsonString) doc.get("emoji")).getValue();
+        return ((BsonString) doc.get("_id")).getValue();
     }
 
 /*
@@ -140,25 +144,25 @@ public class EmojiControllerSpec
         assertNull("No name should match",noJsonResult);
 
     }
-
+*/
     @Test
     public void addEmojiTest(){
-        String newId = emojiController.addNewEmoji("Brian",22,"umm", "brian@yahoo.com");
+        String newId = emojiController.addNewEmojiRecord("5aa060a983e4f144e78135c5", "1", "5", "March 8, 2018", "I'm very happy!");
 
         assertNotNull("Add new emoji should return true when emoji is added,", newId);
         Map<String, String[]> argMap = new HashMap<>();
-        argMap.put("age", new String[] { "22" });
+        argMap.put("emoji", new String[] { "1" });
         String jsonResult = emojiController.getEmojis(argMap);
         BsonArray docs = parseJsonArray(jsonResult);
 
-        List<String> name = docs
+        List<String> _id = docs
             .stream()
-            .map(EmojiControllerSpec::getName)
+            .map(EmojiControllerSpec::get_id)
             .sorted()
             .collect(Collectors.toList());
-        assertEquals("Should return name of new emoji", "Brian", name.get(0));
+        assertEquals("Should return _id of new emoji", "5aa060a983e4f144e78135c5", _id.get(0));
     }
-
+/*
     @Test
     public void getEmojiByCompany(){
         Map<String, String[]> argMap = new HashMap<>();
