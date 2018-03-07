@@ -92,7 +92,7 @@ public class EmojiControllerSpec
         BsonDocument doc = val.asDocument();
         return ((BsonString) doc.get("emoji")).getValue();
     }
-
+/*
     @Test
     public void getAllEmojis() {
         Map<String, String[]> emptyMap = new HashMap<>();
@@ -125,5 +125,5 @@ public class EmojiControllerSpec
         List<String> expectedEmoji = Arrays.asList("1");
         assertEquals("Emojis should match", expectedEmoji, emojis);
     }
-
+*/
 }
