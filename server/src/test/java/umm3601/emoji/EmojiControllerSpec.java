@@ -44,16 +44,19 @@ public class EmojiControllerSpec
 */
 
         testEmojis.add(Document.parse("{\n" +
+                "                    _id: \"5aa060a983e4f144e78135c2\",\n" +
                 "                    emoji: \"1\",\n" +
                 "                    rating: 1,\n" +
                 "                    description: \"I'm a little happy!\"" +
                                 "}"));
         testEmojis.add(Document.parse("{\n" +
+            "                    _id: \"5aa060a983e4f144e78135c3\",\n" +
             "                    emoji: \"2\",\n" +
             "                    rating: 5,\n" +
             "                    description: \"I'm very disappointed!\"" +
             "}"));
         testEmojis.add(Document.parse("{\n" +
+            "                    _id: \"5aa060a983e4f144e78135c4\",\n" +
             "                    emoji: \"3\",\n" +
             "                    rating: 5,\n" +
             "                    description: \"I'm very sick!\"" +
@@ -61,8 +64,9 @@ public class EmojiControllerSpec
 
         samsId = new ObjectId();
         BasicDBObject sam = new BasicDBObject("_id", samsId);
-        sam = sam.append("emoji", 4)
-                .append("rating", 1)
+        sam = sam.append("emoji", "4")
+                .append("_id", "5aa060a983e4f144e78135c4")
+                .append("rating", "1")
                 .append("description", "I'm a little angry!");
 
         emojiDocuments.insertMany(testEmojis);
