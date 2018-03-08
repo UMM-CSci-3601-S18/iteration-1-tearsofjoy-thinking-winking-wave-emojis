@@ -120,36 +120,6 @@ describe('Emoji list', () => {
             expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.description === 'desc1').length).toBe(1);
         });
     /*
-        it('has two emojis that are 37 years old', () => {
-            expect(emojiList.emojis.filter((emoji: Emoji) => emoji.age === 37).length).toBe(2);
-        });
-
-        it('emoji list filters by name', () => {
-            expect(emojiList.filteredEmojis.length).toBe(3);
-            emojiList.emojiName = 'a';
-            emojiList.refreshEmojis().subscribe(() => {
-                expect(emojiList.filteredEmojis.length).toBe(2);
-            });
-        });
-
-        it('emoji list filters by age', () => {
-            expect(emojiList.filteredEmojis.length).toBe(3);
-            emojiList.emojiAge = 37;
-            emojiList.refreshEmojis().subscribe(() => {
-                expect(emojiList.filteredEmojis.length).toBe(2);
-            });
-        });
-
-        it('emoji list filters by name and age', () => {
-            expect(emojiList.filteredEmojis.length).toBe(3);
-            emojiList.emojiAge = 37;
-            emojiList.emojiName = 'i';
-            emojiList.refreshEmojis().subscribe(() => {
-                expect(emojiList.filteredEmojis.length).toBe(1);
-            });
-        });
-
-    });
 
     describe('Misbehaving Emoji List', () => {
         let emojiList: EmojiListComponent;
