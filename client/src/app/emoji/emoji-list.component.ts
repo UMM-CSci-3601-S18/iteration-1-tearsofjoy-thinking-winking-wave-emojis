@@ -39,15 +39,16 @@ export class EmojiListComponent implements OnInit {
 
     }
 
-    isHighlighted(emoji: EmojiRecord): boolean {
-        return emoji._id['$oid'] === this.highlightedID['$oid'];
-    }
+        isHighlighted(emoji: EmojiRecord): boolean {
+            return emoji._id['$oid'] === this.highlightedID['$oid'];
+        }
 
     displayValues(): void{
         console.log("emojiSelected: " + this.emojiSelected);
         console.log("emojiRating: " + this.emojiRating);
         console.log("description: " + this.description);
     }
+
     sendEmojiRecord(): void {
         this.displayValues();
 
