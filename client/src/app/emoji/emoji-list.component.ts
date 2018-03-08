@@ -84,19 +84,19 @@ export class EmojiListComponent implements OnInit {
     //window.location.replace: replace window
     testNavigate(): void{
         if(this.emojiSelected == 1){
-            window.location.replace("http://localhost:9000/response#happyMessage");
+            window.location.replace("http://138.68.187.227:4567/response#VeryHappy");
         }
         if(this.emojiSelected == 2){
-            window.location.replace("http://localhost:9000/response#disappointMessage");
+            window.location.replace("http://138.68.187.227:4567/response#Happy");
         }
         if(this.emojiSelected == 3){
-            window.location.replace("http://localhost:9000/response#sickMessage");
+            window.location.replace("http://138.68.187.227:4567/response#Normal");
         }
         if(this.emojiSelected == 4){
-            window.location.replace("http://localhost:9000/response#angryMessage");
+            window.location.replace("http://138.68.187.227:4567/response#Sad");
         }
         if(this.emojiSelected == 5){
-            window.location.replace("http://localhost:9000/response#sadMessage");
+            window.location.replace("http://138.68.187.227:4567/response#VerySad");
         }
 
     }

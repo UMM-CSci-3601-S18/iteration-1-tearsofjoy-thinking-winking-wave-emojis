@@ -14,27 +14,27 @@
                     <mat-radio-button class="emojibutton" value= 1>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-blush"></i>
-                        Happy
+                        Very happy
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 2>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-confused"></i>
-                        Disappoint
+                        <i class="em em-grinning"></i>
+                        Happy
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 3>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-disappointed"></i>
-                        Sick
+                        <i class="em em-neutral_face"></i>
+                        Normal
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 4>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-                        <i class="em em-angry"></i>
-                        Angry
+                        <i class="em em-confused"></i>
+                        Sad
                     </mat-radio-button>
                     <mat-radio-button class="emojibutton" value= 5>
                         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
                         <i class="em em-cry"></i>
-                        Sad
+                        Very sad
                     </mat-radio-button>
                 </mat-radio-group>
 
@@ -73,12 +73,12 @@
 
             <div *ngIf="sentResponse && submittedEmoji > 1">
                 You indicated that you had some negative feelings. Would you like to view some helpful resources?
-                <button mat-fab color="primary" (click)="testNavigate();"> ??? </button>
+                <button mat-fab color="primary" (click)="testNavigate();"> Yes </button>
             </div>
 
             <div *ngIf="sentResponse && submittedEmoji == 1">
                 You indicated that you had some good feelings. Would you like to view some helpful resources?
-                <button mat-fab color="primary" (click)="testNavigate();"> ??? </button>
+                <button mat-fab color="primary" (click)="testNavigate();"> Yes </button>
             </div>
 
         </mat-card>
