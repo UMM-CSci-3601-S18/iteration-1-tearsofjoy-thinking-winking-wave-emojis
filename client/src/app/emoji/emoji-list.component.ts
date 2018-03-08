@@ -71,9 +71,17 @@ export class EmojiListComponent implements OnInit {
                         this.sentResponse = true;
                 },
                 err => {
-                    // This should probably be turned into some sort of meaningful response.
                     console.log('There was an error adding the user.');
                     console.log('The error was ' + JSON.stringify(err));
+
+                    ////////////////////////////////////////
+                    //This code is for the presentation only.
+                    ////////////////////////////////////////
+                    this.submittedEmoji = this.emojiSelected;
+                    this.sentResponse = true;
+                    ////////////////////////////////////////
+                    //This code should be removed.
+                    ////////////////////////////////////////
                 });
         }
 

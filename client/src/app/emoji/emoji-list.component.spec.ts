@@ -25,28 +25,36 @@ describe('Emoji list', () => {
         emojiListServiceStub = {
             getEmojis: () => Observable.of([
                 {
-                    _id: '',
-                    ownerID: '',
+                    _id: 'temp1',
+                    ownerID: 'OwnerTemp1',
                     emoji: 1,
                     rating: 1,
-                    date: '',
-                    description: '',
+                    date: 'March 8th 2018',
+                    description: 'desc1',
                 },
                 {
-                    _id: '',
-                    ownerID: '',
-                    emoji: 1,
+                    _id: 'temp2',
+                    ownerID: 'OwnerTemp2',
+                    emoji: 2,
                     rating: 1,
-                    date: '',
-                    description: '',
+                    date: 'March 8th 2018',
+                    description: 'desc2',
                 },
                 {
-                    _id: '',
-                    ownerID: '',
+                    _id: 'temp3',
+                    ownerID: 'OwnerTemp3',
                     emoji: 1,
-                    rating: 1,
-                    date: '',
-                    description: '',
+                    rating: 3,
+                    date: 'March 8th 2018',
+                    description: 'desc3',
+                },
+                {
+                    _id: 'temp4',
+                    ownerID: 'OwnerTemp4',
+                    emoji: 3,
+                    rating: 3,
+                    date: 'March 8th 2018',
+                    description: 'desc4',
                 }
             ])
         };
@@ -68,165 +76,192 @@ describe('Emoji list', () => {
             fixture.detectChanges();
         });
     }));
-/*
-    it('contains all the emojis', () => {
-        expect(emojiList.emojis.length).toBe(3);
-    });
 
-    it('contains a emoji named \'Chris\'', () => {
-        expect(emojiList.emojis.some((emoji: Emoji) => emoji.name === 'Chris')).toBe(true);
-    });
-
-    it('contain a emoji named \'Jamie\'', () => {
-        expect(emojiList.emojis.some((emoji: Emoji) => emoji.name === 'Jamie')).toBe(true);
-    });
-
-    it('doesn\'t contain a emoji named \'Santa\'', () => {
-        expect(emojiList.emojis.some((emoji: Emoji) => emoji.name === 'Santa')).toBe(false);
-    });
-
-    it('has two emojis that are 37 years old', () => {
-        expect(emojiList.emojis.filter((emoji: Emoji) => emoji.age === 37).length).toBe(2);
-    });
-
-    it('emoji list filters by name', () => {
-        expect(emojiList.filteredEmojis.length).toBe(3);
-        emojiList.emojiName = 'a';
-        emojiList.refreshEmojis().subscribe(() => {
-            expect(emojiList.filteredEmojis.length).toBe(2);
+        it('contains all the emojis', () => {
+            expect(emojiList.emojis.length).toBe(4);
         });
-    });
 
-    it('emoji list filters by age', () => {
-        expect(emojiList.filteredEmojis.length).toBe(3);
-        emojiList.emojiAge = 37;
-        emojiList.refreshEmojis().subscribe(() => {
-            expect(emojiList.filteredEmojis.length).toBe(2);
+        it('contains a emoji id \'temp1\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp1')).toBe(true);
         });
-    });
 
-    it('emoji list filters by name and age', () => {
-        expect(emojiList.filteredEmojis.length).toBe(3);
-        emojiList.emojiAge = 37;
-        emojiList.emojiName = 'i';
-        emojiList.refreshEmojis().subscribe(() => {
-            expect(emojiList.filteredEmojis.length).toBe(1);
+        it('contains a emoji id \'temp2\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp2')).toBe(true);
         });
+
+        it('doesn\'t contain a emoji id \'temp5\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp5')).toBe(false);
+        });
+        it('contains a emoji ownerID \'OwnerTemp1\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp1')).toBe(true);
+        });
+
+        it('contains a emoji ownerID \'OwnerTemp2\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp2')).toBe(true);
+        });
+
+        it('doesn\'t contain a emoji ownerID \'OwnerTemp5\'', () => {
+            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp5')).toBe(false);
+        });
+
+        it('has two emojis that are emoji 1', () => {
+            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.emoji === 1).length).toBe(2);
+        });
+
+        it('has two emojis that are rating 1', () => {
+            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.rating === 1).length).toBe(2);
+        });
+
+        it('has three emojis that are date March 8th 2018', () => {
+            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.date === 'March 8th 2018').length).toBe(4);
+        });
+
+        it('has one emojis that are description desc1', () => {
+            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.description === 'desc1').length).toBe(1);
+        });
+    /*
+        it('has two emojis that are 37 years old', () => {
+            expect(emojiList.emojis.filter((emoji: Emoji) => emoji.age === 37).length).toBe(2);
+        });
+
+        it('emoji list filters by name', () => {
+            expect(emojiList.filteredEmojis.length).toBe(3);
+            emojiList.emojiName = 'a';
+            emojiList.refreshEmojis().subscribe(() => {
+                expect(emojiList.filteredEmojis.length).toBe(2);
+            });
+        });
+
+        it('emoji list filters by age', () => {
+            expect(emojiList.filteredEmojis.length).toBe(3);
+            emojiList.emojiAge = 37;
+            emojiList.refreshEmojis().subscribe(() => {
+                expect(emojiList.filteredEmojis.length).toBe(2);
+            });
+        });
+
+        it('emoji list filters by name and age', () => {
+            expect(emojiList.filteredEmojis.length).toBe(3);
+            emojiList.emojiAge = 37;
+            emojiList.emojiName = 'i';
+            emojiList.refreshEmojis().subscribe(() => {
+                expect(emojiList.filteredEmojis.length).toBe(1);
+            });
+        });
+
     });
 
-});
+    describe('Misbehaving Emoji List', () => {
+        let emojiList: EmojiListComponent;
+        let fixture: ComponentFixture<EmojiListComponent>;
 
-describe('Misbehaving Emoji List', () => {
-    let emojiList: EmojiListComponent;
-    let fixture: ComponentFixture<EmojiListComponent>;
-
-    let emojiListServiceStub: {
-        getEmojis: () => Observable<Emoji[]>
-    };
-
-    beforeEach(() => {
-        // stub EmojiService for test purposes
-        emojiListServiceStub = {
-            getEmojis: () => Observable.create(observer => {
-                observer.error('Error-prone observable');
-            })
+        let emojiListServiceStub: {
+            getEmojis: () => Observable<Emoji[]>
         };
 
-        TestBed.configureTestingModule({
-            imports: [FormsModule, CustomModule],
-            declarations: [EmojiListComponent],
-            providers: [{provide: EmojiListService, useValue: emojiListServiceStub},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+        beforeEach(() => {
+            // stub EmojiService for test purposes
+            emojiListServiceStub = {
+                getEmojis: () => Observable.create(observer => {
+                    observer.error('Error-prone observable');
+                })
+            };
+
+            TestBed.configureTestingModule({
+                imports: [FormsModule, CustomModule],
+                declarations: [EmojiListComponent],
+                providers: [{provide: EmojiListService, useValue: emojiListServiceStub},
+                    {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+            });
+        });
+
+        beforeEach(async(() => {
+            TestBed.compileComponents().then(() => {
+                fixture = TestBed.createComponent(EmojiListComponent);
+                emojiList = fixture.componentInstance;
+                fixture.detectChanges();
+            });
+        }));
+
+        it('generates an error if we don\'t set up a EmojiListService', () => {
+            // Since the observer throws an error, we don't expect emojis to be defined.
+            expect(emojiList.emojis).toBeUndefined();
         });
     });
 
-    beforeEach(async(() => {
-        TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(EmojiListComponent);
-            emojiList = fixture.componentInstance;
-            fixture.detectChanges();
-        });
-    }));
 
-    it('generates an error if we don\'t set up a EmojiListService', () => {
-        // Since the observer throws an error, we don't expect emojis to be defined.
-        expect(emojiList.emojis).toBeUndefined();
-    });
-});
-
-
-describe('Adding a emoji', () => {
-    let emojiList: EmojiListComponent;
-    let fixture: ComponentFixture<EmojiListComponent>;
-    const newEmoji: Emoji = {
-        _id: '',
-        name: 'Sam',
-        age: 67,
-        company: 'Things and stuff',
-        email:                    _id: 'jamie_id',
-                    name: 'Jamie',
-                    age: 37,
-                    company: 'Frogs, Inc.',
-                    email: 'jamie@frogs.com' 'sam@this.and.that'
-    };
-    const newId = 'sam_id';
-
-    let calledEmoji: Emoji;
-
-    let emojiListServiceStub: {
-        getEmojis: () => Observable<Emoji[]>,
-        addNewEmoji: (newEmoji: Emoji) => Observable<{'$oid': string}>
-    };
-    let mockMatDialog: {
-        open: (AddEmojiComponent, any) => {
-            afterClosed: () => Observable<Emoji>
+    describe('Adding a emoji', () => {
+        let emojiList: EmojiListComponent;
+        let fixture: ComponentFixture<EmojiListComponent>;
+        const newEmoji: Emoji = {
+            _id: '',
+            name: 'Sam',
+            age: 67,
+            company: 'Things and stuff',
+            email:                    _id: 'jamie_id',
+                        name: 'Jamie',
+                        age: 37,
+                        company: 'Frogs, Inc.',
+                        email: 'jamie@frogs.com' 'sam@this.and.that'
         };
-    };
+        const newId = 'sam_id';
 
-    beforeEach(() => {
-        calledEmoji = null;
-        // stub EmojiService for test purposes
-        emojiListServiceStub = {
-            getEmojis: () => Observable.of([]),
-            addNewEmoji: (emojiToAdd: Emoji) => {
-                calledEmoji = emojiToAdd;
-                return Observable.of({
-                    '$oid': newId
-                });
-            }
+        let calledEmoji: Emoji;
+
+        let emojiListServiceStub: {
+            getEmojis: () => Observable<Emoji[]>,
+            addNewEmoji: (newEmoji: Emoji) => Observable<{'$oid': string}>
         };
-        mockMatDialog = {
-            open: () => {
-                return {
-                    afterClosed: () => {
-                        return Observable.of(newEmoji);
-                    }
-                };
-            }
+        let mockMatDialog: {
+            open: (AddEmojiComponent, any) => {
+                afterClosed: () => Observable<Emoji>
+            };
         };
 
-        TestBed.configureTestingModule({
-            imports: [FormsModule, CustomModule],
-            declarations: [EmojiListComponent],
-            providers: [
-                {provide: EmojiListService, useValue: emojiListServiceStub},
-                {provide: MatDialog, useValue: mockMatDialog},
-                {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
-        });
-    });
+        beforeEach(() => {
+            calledEmoji = null;
+            // stub EmojiService for test purposes
+            emojiListServiceStub = {
+                getEmojis: () => Observable.of([]),
+                addNewEmoji: (emojiToAdd: Emoji) => {
+                    calledEmoji = emojiToAdd;
+                    return Observable.of({
+                        '$oid': newId
+                    });
+                }
+            };
+            mockMatDialog = {
+                open: () => {
+                    return {
+                        afterClosed: () => {
+                            return Observable.of(newEmoji);
+                        }
+                    };
+                }
+            };
 
-    beforeEach(async(() => {
-        TestBed.compileComponents().then(() => {
-            fixture = TestBed.createComponent(EmojiListComponent);
-            emojiList = fixture.componentInstance;
-            fixture.detectChanges();
+            TestBed.configureTestingModule({
+                imports: [FormsModule, CustomModule],
+                declarations: [EmojiListComponent],
+                providers: [
+                    {provide: EmojiListService, useValue: emojiListServiceStub},
+                    {provide: MatDialog, useValue: mockMatDialog},
+                    {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true}]
+            });
         });
-    }));
 
-    it('calls EmojiListService.addEmoji', () => {
-        expect(calledEmoji).toBeNull();
-        emojiList.openDialog();
-        expect(calledEmoji).toEqual(newEmoji);
-    });
-    */
+        beforeEach(async(() => {
+            TestBed.compileComponents().then(() => {
+                fixture = TestBed.createComponent(EmojiListComponent);
+                emojiList = fixture.componentInstance;
+                fixture.detectChanges();
+            });
+        }));
+
+        it('calls EmojiListService.addEmoji', () => {
+            expect(calledEmoji).toBeNull();
+            emojiList.openDialog();
+            expect(calledEmoji).toEqual(newEmoji);
+        });
+        */
 });
