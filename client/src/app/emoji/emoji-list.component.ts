@@ -28,6 +28,7 @@ export class EmojiListComponent implements OnInit {
     public displayEmoji: boolean = true;
     public ownerID: string = "tempID";
     public sentResponse: boolean = false;
+    public submittedEmoji: number = -1;
 
 
     // The ID of the
@@ -66,9 +67,8 @@ export class EmojiListComponent implements OnInit {
                 addEmojiResult => {
                     this.highlightedID = addEmojiResult;
                     console.log("successfully sent emoji");
-                    if(this.emojiSelected > 1){
+                        this.submittedEmoji = this.emojiSelected;
                         this.sentResponse = true;
-                    }
                 },
                 err => {
                     // This should probably be turned into some sort of meaningful response.

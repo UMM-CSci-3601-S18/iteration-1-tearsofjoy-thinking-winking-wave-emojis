@@ -8,7 +8,7 @@
             <mat-card-title id="emojiCardTitle">Recording makes a better you</mat-card-title>
             <mat-divider></mat-divider>
 
-            <h2 class="example-h2">How's your feeling today?</h2>
+            <h2 class="example-h2">How are you feeling today?</h2>
 
                 <mat-radio-group class="emojiselect" [(ngModel)]="emojiSelected">
                     <mat-radio-button class="emojibutton" value= 1>
@@ -45,7 +45,7 @@
 
 
 
-            <h2 class="example-h2">How you will rate your feeling?</h2>
+            <h2 class="example-h2">How would you rate the intensity of your feelings?</h2>
             <p>(1 means a little, 5 means extremely)</p>
             <mat-slider
                 class="slider"
@@ -59,7 +59,7 @@
 
 
 
-            <h2 class="example-h2">More description of your feeling?</h2>
+            <h2 class="example-h2">Would you like to describe your feelings?</h2>
             <form class="textbox">
             <mat-form-field>
                 <textarea matInput id="emojiDescription" #input placeholder="Description here." (input)="description=$event.target.value"></textarea>
@@ -71,8 +71,13 @@
             <button mat-fab color="primary" (click)="sendEmojiRecord();">submit </button>
             </form>
 
-            <div *ngIf="sentResponse">
+            <div *ngIf="sentResponse && submittedEmoji > 1">
                 You indicated that you had some negative feelings. Would you like to view some helpful resources?
+                <button mat-fab color="primary" (click)="testNavigate();"> ??? </button>
+            </div>
+
+            <div *ngIf="sentResponse && submittedEmoji == 1">
+                You indicated that you had some good feelings. Would you like to view some helpful resources?
                 <button mat-fab color="primary" (click)="testNavigate();"> ??? </button>
             </div>
 
