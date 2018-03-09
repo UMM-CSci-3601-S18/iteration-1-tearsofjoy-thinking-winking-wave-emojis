@@ -71,12 +71,12 @@
             <button mat-fab color="primary" (click)="sendEmojiRecord();">submit </button>
             </form>
 
-            <div *ngIf="sentResponse && submittedEmoji > 1">
+            <div *ngIf="sentResponse && submittedEmoji > 3">
                 You indicated that you had some negative feelings. Would you like to view some helpful resources?
                 <button mat-fab color="primary" [routerLink]="['/response']"> Yes </button>
             </div>
 
-            <div *ngIf="sentResponse && submittedEmoji == 1">
+            <div *ngIf="sentResponse && submittedEmoji <= 3">
                 You indicated that you had some good feelings. Would you like to view some helpful resources?
                 <button mat-fab color="primary" [routerLink]="['/response']"> Yes </button>
             </div>

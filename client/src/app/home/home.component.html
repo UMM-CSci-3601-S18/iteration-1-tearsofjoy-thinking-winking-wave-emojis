@@ -4,7 +4,7 @@
             <mat-card-title id="hello-world">{{ this.text }}</mat-card-title>
             <mat-divider></mat-divider>
             <mat-card-content>
-                <button mat-button (click)="gotoemojiNavigate();">Go to Emoji</button>
+                <button mat-button [routerLink]="['/emoji']">Go to Emoji</button>
 
             </mat-card-content>
         </mat-card>
