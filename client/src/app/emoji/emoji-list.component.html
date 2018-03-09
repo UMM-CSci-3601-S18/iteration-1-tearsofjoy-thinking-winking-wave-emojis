@@ -73,12 +73,12 @@
 
             <div *ngIf="sentResponse && submittedEmoji > 1">
                 You indicated that you had some negative feelings. Would you like to view some helpful resources?
-                <button mat-fab color="primary" (click)="testNavigate();"> Yes </button>
+                <button mat-fab color="primary" [routerLink]="['/response']"> Yes </button>
             </div>
 
             <div *ngIf="sentResponse && submittedEmoji == 1">
                 You indicated that you had some good feelings. Would you like to view some helpful resources?
-                <button mat-fab color="primary" (click)="testNavigate();"> Yes </button>
+                <button mat-fab color="primary" [routerLink]="['/response']"> Yes </button>
             </div>
 
         </mat-card>
