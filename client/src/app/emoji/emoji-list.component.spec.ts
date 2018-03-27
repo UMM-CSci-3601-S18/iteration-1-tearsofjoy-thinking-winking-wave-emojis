@@ -77,56 +77,55 @@ describe('Emoji list', () => {
         });
     }));
 
-        it('contains all the emojis', () => {
-            expect(emojiList.emojis.length).toBe(4);
-        });
+    it('contains all the emojis', () => {
+        expect(emojiList.emojis.length).toBe(4);
+    });
 
-        it('contains a emoji id \'temp1\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp1')).toBe(true);
-        });
+    it('contains a emoji id \'temp1\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp1')).toBe(true);
+    });
 
-        it('contains a emoji id \'temp2\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp2')).toBe(true);
-        });
+    it('contains a emoji id \'temp2\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp2')).toBe(true);
+    });
 
-        it('doesn\'t contain a emoji id \'temp5\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp5')).toBe(false);
-        });
-        it('contains a emoji ownerID \'OwnerTemp1\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp1')).toBe(true);
-        });
+    it('doesn\'t contain a emoji id \'temp5\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji._id === 'temp5')).toBe(false);
+    });
+    it('contains a emoji ownerID \'OwnerTemp1\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp1')).toBe(true);
+    });
 
-        it('contains a emoji ownerID \'OwnerTemp2\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp2')).toBe(true);
-        });
+    it('contains a emoji ownerID \'OwnerTemp2\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp2')).toBe(true);
+    });
 
-        it('doesn\'t contain a emoji ownerID \'OwnerTemp5\'', () => {
-            expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp5')).toBe(false);
-        });
+    it('doesn\'t contain a emoji ownerID \'OwnerTemp5\'', () => {
+        expect(emojiList.emojis.some((emoji: EmojiRecord) => emoji.ownerID === 'OwnerTemp5')).toBe(false);
+    });
 
-        it('has two emojis that are emoji 1', () => {
-            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.emoji === 1).length).toBe(2);
-        });
+    it('has two emojis that are emoji 1', () => {
+        expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.emoji === 1).length).toBe(2);
+    });
 
-        it('has two emojis that are rating 1', () => {
-            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.rating === 1).length).toBe(2);
-        });
+    it('has two emojis that are rating 1', () => {
+        expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.rating === 1).length).toBe(2);
+    });
 
-        it('has three emojis that are date March 8th 2018', () => {
-            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.date === 'March 8th 2018').length).toBe(4);
-        });
+    it('has three emojis that are date March 8th 2018', () => {
+        expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.date === 'March 8th 2018').length).toBe(4);
+    });
 
-        it('has one emojis that are description desc1', () => {
-            expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.description === 'desc1').length).toBe(1);
-        });
-    /*
-
+    it('has one emojis that are description desc1', () => {
+        expect(emojiList.emojis.filter((emoji: EmojiRecord) => emoji.description === 'desc1').length).toBe(1);
+    });
+/*
     describe('Misbehaving Emoji List', () => {
         let emojiList: EmojiListComponent;
         let fixture: ComponentFixture<EmojiListComponent>;
 
         let emojiListServiceStub: {
-            getEmojis: () => Observable<Emoji[]>
+            getEmojis: () => Observable<EmojiRecord[]>
         };
 
         beforeEach(() => {
@@ -158,33 +157,30 @@ describe('Emoji list', () => {
             expect(emojiList.emojis).toBeUndefined();
         });
     });
-
-
+    */
+/*
     describe('Adding a emoji', () => {
         let emojiList: EmojiListComponent;
         let fixture: ComponentFixture<EmojiListComponent>;
-        const newEmoji: Emoji = {
-            _id: '',
-            name: 'Sam',
-            age: 67,
-            company: 'Things and stuff',
-            email:                    _id: 'jamie_id',
-                        name: 'Jamie',
-                        age: 37,
-                        company: 'Frogs, Inc.',
-                        email: 'jamie@frogs.com' 'sam@this.and.that'
+        const newEmoji: EmojiRecord = {
+            _id: 'temp5',
+            ownerID: 'OwnerTemp5',
+            emoji: 3,
+            rating: 3,
+            date: 'March 8th 2018',
+            description: 'desc5',
         };
         const newId = 'sam_id';
 
-        let calledEmoji: Emoji;
+        let calledEmoji: EmojiRecord;
 
         let emojiListServiceStub: {
-            getEmojis: () => Observable<Emoji[]>,
-            addNewEmoji: (newEmoji: Emoji) => Observable<{'$oid': string}>
+            getEmojis: () => Observable<EmojiRecord[]>,
+            addNewEmoji: (newEmoji: EmojiRecord) => Observable<{ '$oid': string }>
         };
         let mockMatDialog: {
             open: (AddEmojiComponent, any) => {
-                afterClosed: () => Observable<Emoji>
+                afterClosed: () => Observable<EmojiRecord>
             };
         };
 
@@ -193,7 +189,7 @@ describe('Emoji list', () => {
             // stub EmojiService for test purposes
             emojiListServiceStub = {
                 getEmojis: () => Observable.of([]),
-                addNewEmoji: (emojiToAdd: Emoji) => {
+                addNewEmoji: (emojiToAdd: EmojiRecord) => {
                     calledEmoji = emojiToAdd;
                     return Observable.of({
                         '$oid': newId
@@ -230,8 +226,8 @@ describe('Emoji list', () => {
 
         it('calls EmojiListService.addEmoji', () => {
             expect(calledEmoji).toBeNull();
-            emojiList.openDialog();
             expect(calledEmoji).toEqual(newEmoji);
         });
-        */
+    });
+    */
 });

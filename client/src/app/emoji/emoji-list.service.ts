@@ -15,7 +15,7 @@ export class EmojiListService {
     constructor(private http: HttpClient) {
     }
 
-    getEmojis(emojiCompany?: string): Observable<EmojiRecord[]> {
+    getEmojis(emoji_id?: string): Observable<EmojiRecord[]> {
         return this.http.get<EmojiRecord[]>(this.emojiUrl);
     }
 
@@ -25,6 +25,32 @@ export class EmojiListService {
 
     private parameterPresent(searchParam: string) {
         return this.emojiUrl.indexOf(searchParam) !== -1;
+    }
+
+    filterByOwnerID(emojiOwnerID?: string): void {
+        if (!(emojiOwnerID == null || emojiOwnerID === '')) {
+            if (this.parameterPresent('OwnerID=') ) {
+                // there was a previous search by company that we need to clear
+                this.removeParameter('OwnerID=');
+            }
+            if (this.emojiUrl.indexOf('?') !== -1) {
+                // there was already some information passed in this url
+                this.emojiUrl += 'OwnerID=' + emojiOwnerID + '&';
+            } else {
+                // this was the first bit of information to pass in the url
+                this.emojiUrl += '?OwnerID=' + emojiOwnerID + '&';
+            }
+        } else {
+            // there was nothing in the box to put onto the URL... reset
+            if (this.parameterPresent('OwnerID=')) {
+                let start = this.emojiUrl.indexOf('OwnerID=');
+                const end = this.emojiUrl.indexOf('&', start);
+                if (this.emojiUrl.substring(start - 1, start) === '?') {
+                    start = start - 1;
+                }
+                this.emojiUrl = this.emojiUrl.substring(0, start) + this.emojiUrl.substring(end + 1);
+            }
+        }
     }
 
     // remove the parameter and, if present, the &

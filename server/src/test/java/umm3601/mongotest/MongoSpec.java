@@ -45,23 +45,23 @@ public class MongoSpec {
         userDocuments.drop();
         List<Document> testUsers = new ArrayList<>();
         testUsers.add(Document.parse("{\n" +
-                "                    name: \"Chris\",\n" +
-                "                    age: 25,\n" +
-                "                    company: \"UMM\",\n" +
-                "                    email: \"chris@this.that\"\n" +
-                "                }"));
+            "                    name: \"Chris\",\n" +
+            "                    age: 25,\n" +
+            "                    company: \"UMM\",\n" +
+            "                    email: \"chris@this.that\"\n" +
+            "                }"));
         testUsers.add(Document.parse("{\n" +
-                "                    name: \"Pat\",\n" +
-                "                    age: 37,\n" +
-                "                    company: \"IBM\",\n" +
-                "                    email: \"pat@something.com\"\n" +
-                "                }"));
+            "                    name: \"Pat\",\n" +
+            "                    age: 37,\n" +
+            "                    company: \"IBM\",\n" +
+            "                    email: \"pat@something.com\"\n" +
+            "                }"));
         testUsers.add(Document.parse("{\n" +
-                "                    name: \"Jamie\",\n" +
-                "                    age: 37,\n" +
-                "                    company: \"Frogs, Inc.\",\n" +
-                "                    email: \"jamie@frogs.com\"\n" +
-                "                }"));
+            "                    name: \"Jamie\",\n" +
+            "                    age: 37,\n" +
+            "                    company: \"Frogs, Inc.\",\n" +
+            "                    email: \"jamie@frogs.com\"\n" +
+            "                }"));
         userDocuments.insertMany(testUsers);
     }
 
@@ -100,8 +100,8 @@ public class MongoSpec {
     @Test
     public void over25SortedByName() {
         FindIterable<Document> documents
-                = userDocuments.find(gt("age", 25))
-                    .sort(Sorts.ascending("name"));
+            = userDocuments.find(gt("age", 25))
+            .sort(Sorts.ascending("name"));
         List<Document> docs = intoList(documents);
         assertEquals("Should be 2", 2, docs.size());
         assertEquals("First should be Jamie", "Jamie", docs.get(0).get("name"));
@@ -111,8 +111,8 @@ public class MongoSpec {
     @Test
     public void over25AndIbmers() {
         FindIterable<Document> documents
-                = userDocuments.find(and(gt("age", 25),
-                                         eq("company", "IBM")));
+            = userDocuments.find(and(gt("age", 25),
+            eq("company", "IBM")));
         List<Document> docs = intoList(documents);
         assertEquals("Should be 1", 1, docs.size());
         assertEquals("First should be Pat", "Pat", docs.get(0).get("name"));
@@ -121,7 +121,7 @@ public class MongoSpec {
     @Test
     public void justNameAndEmail() {
         FindIterable<Document> documents
-                = userDocuments.find().projection(fields(include("name", "email")));
+            = userDocuments.find().projection(fields(include("name", "email")));
         List<Document> docs = intoList(documents);
         assertEquals("Should be 3", 3, docs.size());
         assertEquals("First should be Chris", "Chris", docs.get(0).get("name"));
@@ -133,8 +133,8 @@ public class MongoSpec {
     @Test
     public void justNameAndEmailNoId() {
         FindIterable<Document> documents
-                = userDocuments.find()
-                .projection(fields(include("name", "email"), excludeId()));
+            = userDocuments.find()
+            .projection(fields(include("name", "email"), excludeId()));
         List<Document> docs = intoList(documents);
         assertEquals("Should be 3", 3, docs.size());
         assertEquals("First should be Chris", "Chris", docs.get(0).get("name"));
@@ -146,9 +146,9 @@ public class MongoSpec {
     @Test
     public void justNameAndEmailNoIdSortedByCompany() {
         FindIterable<Document> documents
-                = userDocuments.find()
-                .sort(Sorts.ascending("company"))
-                .projection(fields(include("name", "email"), excludeId()));
+            = userDocuments.find()
+            .sort(Sorts.ascending("company"))
+            .projection(fields(include("name", "email"), excludeId()));
         List<Document> docs = intoList(documents);
         assertEquals("Should be 3", 3, docs.size());
         assertEquals("First should be Jamie", "Jamie", docs.get(0).get("name"));
@@ -160,8 +160,8 @@ public class MongoSpec {
     @Test
     public void ageCounts() {
         AggregateIterable<Document> documents
-                = userDocuments.aggregate(
-                Arrays.asList(
+            = userDocuments.aggregate(
+            Arrays.asList(
                         /*
                          * Groups data by the "age" field, and then counts
                          * the number of documents with each given age.
@@ -169,10 +169,10 @@ public class MongoSpec {
                          * has "age" as it's "_id", and the count as the
                          * "ageCount" field.
                          */
-                        Aggregates.group("$age",
-                                Accumulators.sum("ageCount", 1)),
-                        Aggregates.sort(Sorts.ascending("_id"))
-                )
+                Aggregates.group("$age",
+                    Accumulators.sum("ageCount", 1)),
+                Aggregates.sort(Sorts.ascending("_id"))
+            )
         );
         List<Document> docs = intoList(documents);
         assertEquals("Should be two distinct ages", 2, docs.size());
@@ -185,12 +185,12 @@ public class MongoSpec {
     @Test
     public void averageAge() {
         AggregateIterable<Document> documents
-                = userDocuments.aggregate(
-                        Arrays.asList(
-                                Aggregates.group("$company",
-                                        Accumulators.avg("averageAge", "$age")),
-                                Aggregates.sort(Sorts.ascending("_id"))
-                        ));
+            = userDocuments.aggregate(
+            Arrays.asList(
+                Aggregates.group("$company",
+                    Accumulators.avg("averageAge", "$age")),
+                Aggregates.sort(Sorts.ascending("_id"))
+            ));
         List<Document> docs = intoList(documents);
         assertEquals("Should be three companies", 3, docs.size());
 
