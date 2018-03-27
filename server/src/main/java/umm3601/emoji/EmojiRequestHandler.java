@@ -25,6 +25,8 @@ public class EmojiRequestHandler {
     public String addNewEmojiRecord(Request req, Response res)
     {
 
+        System.out.println("It got into addNewEmojiRecord()");
+        System.out.println("It got this request: " + req);
         res.type("application/json");
         Object o = JSON.parse(req.body());
         try {

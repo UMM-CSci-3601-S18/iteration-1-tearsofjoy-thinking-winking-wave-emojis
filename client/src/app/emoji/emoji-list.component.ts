@@ -64,6 +64,7 @@ export class EmojiListComponent implements OnInit {
                 description: this.description};
 
             console.log("created emoji object to be sent");
+            console.log(JSON.stringify(newEmojiRecord));
             this.emojiListService.addNewEmojiRecord(newEmojiRecord).subscribe(
                 addEmojiResult => {
                     this.highlightedID = addEmojiResult;
